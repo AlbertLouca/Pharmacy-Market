@@ -96,6 +96,17 @@ class Home extends StatelessWidget {
           ],
           selectedItemColor: Colors.amber[800],
           currentIndex: 1,
+          onTap: (int index) {
+            switch (index) {
+              case 0:
+                {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profile()),
+                  );
+                }
+            }
+          },
         ),
         appBar: AppBar(
           title: Text("Pharmacy App"),
