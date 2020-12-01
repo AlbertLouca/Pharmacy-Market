@@ -4,6 +4,7 @@ import 'Profile.dart';
 import 'Settings.dart';
 import 'NavBar.dart';
 import 'Items.dart';
+
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
@@ -42,10 +43,12 @@ class Category extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 20),
               RaisedButton(
-                onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Items()),
-                );},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Items()),
+                  );
+                },
                 color: Colors.red,
                 padding: EdgeInsets.fromLTRB(20, 50, 20, 50),
                 textColor: Colors.white,
@@ -68,10 +71,12 @@ class Category extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               RaisedButton(
-                onPressed: () {Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Items()),
-                );},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Items()),
+                  );
+                },
                 padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                 color: Colors.green,
                 textColor: Colors.white,
@@ -88,10 +93,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        bottomNavigationBar:NavBar(1),
-
-
-
+        bottomNavigationBar: NavBar(1),
         appBar: AppBar(
           title: Text("Pharmacy App"),
         ),
@@ -147,7 +149,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-
-
-

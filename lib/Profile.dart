@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'NavBar.dart';
+
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,8 @@ class Profile extends StatelessWidget {
                     color: Colors.teal[100],
                   ),
                 ),
-                Text('Welcome', style: TextStyle(fontWeight: FontWeight.bold)),
+                Text('Welcome first name',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 Card(
                     color: Colors.white,
                     margin:
@@ -55,7 +57,7 @@ class Profile extends StatelessWidget {
                         color: Colors.teal[900],
                       ),
                       title: Text(
-                        '+20 1235XXX8XX',
+                        '+20 1235345828',
                         style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
@@ -70,7 +72,7 @@ class Profile extends StatelessWidget {
                       color: Colors.teal[900],
                     ),
                     title: Text(
-                      '072/8 laker street',
+                      '221B Baker Street',
                       style: TextStyle(fontSize: 20.0),
                     ),
                   ),

@@ -1,40 +1,28 @@
 import 'package:flutter/material.dart';
-
-
+import 'NavBar.dart';
 
 class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Login',
-      theme: new ThemeData(
-        primarySwatch: Colors.blue
-      ),
+      theme: new ThemeData(primarySwatch: Colors.blue),
       home: new LoginPage(),
     );
   }
 }
-
 
 class LoginPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
 }
 
-
-enum FormType {
-  login,
-  register
-}
-
-
+enum FormType { login, register }
 
 class _LoginPageState extends State<LoginPage> {
-    
-  FormType _form = FormType.login; 
- 
- 
-  void _formChange () async {
+  FormType _form = FormType.login;
+
+  void _formChange() async {
     setState(() {
       if (_form == FormType.register) {
         _form = FormType.login;
@@ -46,24 +34,8 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold( bottomNavigationBar: BottomNavigationBar(  
-       currentIndex: 0, // this will be set when a new tab is tapped
-       items: [
-        BottomNavigationBarItem(
-      icon: Icon(Icons.account_circle),
-      label: 'Profile',
-      
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: 'Home',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'Settings',
-    ),
-  ],
-     ),
+    return new Scaffold(
+      bottomNavigationBar: NavBar(0),
       appBar: _buildBar(context),
       body: new Container(
         padding: EdgeInsets.all(16.0),
@@ -90,17 +62,13 @@ class _LoginPageState extends State<LoginPage> {
         children: <Widget>[
           new Container(
             child: new TextField(
-              decoration: new InputDecoration(
-                labelText: 'Email'
-              ),
-               //obscureText: true,
+              decoration: new InputDecoration(labelText: 'Email'),
+              //obscureText: true,
             ),
           ),
           new Container(
             child: new TextField(
-              decoration: new InputDecoration(
-                labelText: 'Password'
-              ),
+              decoration: new InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
           )
@@ -147,19 +115,15 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _pressedForgot () {
+  void _pressedForgot() {
     print('Forgot Button was pressed');
   }
 
-  void _createAccountPressed () {
+  void _createAccountPressed() {
     print('The user wants to create an account');
-
   }
 
-void _pressedLogin () {
+  void _pressedLogin() {
     print('Login Button was pressed');
   }
-
 }
-
-
