@@ -1,6 +1,9 @@
+import 'package:assinment_2/NavBar.dart';
 import 'package:flutter/material.dart';
 import 'Profile.dart';
-
+import 'Settings.dart';
+import 'NavBar.dart';
+import 'Items.dart';
 void main() {
   runApp(MaterialApp(
     title: 'Navigation Basics',
@@ -39,7 +42,10 @@ class Category extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 20),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Items()),
+                );},
                 color: Colors.red,
                 padding: EdgeInsets.fromLTRB(20, 50, 20, 50),
                 textColor: Colors.white,
@@ -62,7 +68,10 @@ class Category extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () {Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Items()),
+                );},
                 padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                 color: Colors.green,
                 textColor: Colors.white,
@@ -79,35 +88,10 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle),
-              label: 'Profile',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-          selectedItemColor: Colors.amber[800],
-          currentIndex: 1,
-          onTap: (int index) {
-            switch (index) {
-              case 0:
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Profile()),
-                  );
-                }
-            }
-          },
-        ),
+        bottomNavigationBar:NavBar(1),
+
+
+
         appBar: AppBar(
           title: Text("Pharmacy App"),
         ),
@@ -164,127 +148,6 @@ class Home extends StatelessWidget {
   }
 }
 
-class Items extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        selectedItemColor: Colors.amber[800],
-        currentIndex: 1,
-      ),
-      appBar: AppBar(
-        title: Text('Items'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_basket),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Cart()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: SafeArea(
-          child: ListView(
-        children: [
-          Line(),
-          Line(),
-          Line(),
-          Line(),
-          Line(),
-          Line(),
-          Line(),
-          Line(),
-          Line(),
-        ],
-      )),
-    );
-  }
-}
 
-class Cart extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.money_rounded),
-            label: 'CheckOut',
-          ),
-        ],
-        selectedItemColor: Colors.green[800],
-        currentIndex: 1,
-      ),
-      appBar: AppBar(
-        title: Text("Cart"),
-      ),
-      body: SafeArea(
-          child: ListView(
-        children: [
-          LineCart(),
-          LineCart(),
-        ],
-      )),
-      //row gdid ba3d el satr da
-    );
-  }
-}
 
-class Line extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white24,
-        margin: EdgeInsets.all(25.0),
-        child: Row(
-          children: [
-            FlutterLogo(
-              size: 60.0,
-            ),
-            Text('Paracitamol                                   '),
-            Icon(
-              Icons.add_to_queue,
-              color: Colors.blue[500],
-            ),
-          ],
-        ));
-  }
-}
 
-class LineCart extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white24,
-        margin: EdgeInsets.all(25.0),
-        child: Row(
-          children: [
-            FlutterLogo(
-              size: 60.0,
-            ),
-            Text('Paracitamol                                   '),
-          ],
-        ));
-  }
-}

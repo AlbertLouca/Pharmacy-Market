@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'NavBar.dart';
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        bottomNavigationBar: NavBar(0),
         appBar: AppBar(
           title: Text(
             "Profile",
