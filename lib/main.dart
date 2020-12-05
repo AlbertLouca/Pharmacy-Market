@@ -1,9 +1,12 @@
-import 'package:assinment_2/NavBar.dart';
+import 'package:Pharmacy/NavBar.dart';
+import 'package:Pharmacy/contact.dart';
 import 'package:flutter/material.dart';
 import 'Profile.dart';
-import 'Settings.dart';
+import 'Cart.dart';
 import 'NavBar.dart';
 import 'Items.dart';
+import 'log.dart';
+import 'address.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -17,23 +20,7 @@ class Category extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        selectedItemColor: Colors.amber[800],
-      ),
+      bottomNavigationBar: NavBar(1),
       appBar: AppBar(
         title: Text("Pharmacy App"),
       ),
@@ -93,6 +80,82 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(child: Center(child: Text('Hello User'))),
+              Container(
+                constraints: BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                margin: EdgeInsets.all(10),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Cart()),
+                    );
+                  },
+                  color: Colors.blue[200],
+                  child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Cart',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[900],
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward,
+                            color: Colors.grey[900],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                constraints: BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
+                margin: EdgeInsets.all(10),
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Login()));
+                  },
+                  color: Colors.green[200],
+                  child: Padding(
+                    padding: EdgeInsets.all(0),
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey[900],
+                            ),
+                          ),
+                          Icon(
+                            Icons.login_outlined,
+                            color: Colors.grey[900],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         bottomNavigationBar: NavBar(1),
         appBar: AppBar(
           title: Text("Pharmacy App"),
@@ -107,7 +170,7 @@ class Home extends StatelessWidget {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Category()));
                   },
-                  color: Colors.green,
+                  color: Colors.orange,
                   padding: EdgeInsets.fromLTRB(60, 50, 50, 50),
                   textColor: Colors.white,
                   label: Text(
@@ -118,8 +181,11 @@ class Home extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 RaisedButton.icon(
-                  onPressed: () {},
-                  color: Colors.green,
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Address()));
+                  },
+                  color: Colors.red,
                   padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                   textColor: Colors.white,
                   label: Text(
@@ -133,7 +199,10 @@ class Home extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
                 RaisedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Contact()));
+                  },
                   padding: EdgeInsets.fromLTRB(60, 50, 50, 50),
                   color: Colors.green,
                   textColor: Colors.white,
