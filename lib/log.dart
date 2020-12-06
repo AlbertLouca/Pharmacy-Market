@@ -20,14 +20,43 @@ class LoginPage extends StatefulWidget {
 enum FormType { login, register }
 
 class _LoginPageState extends State<LoginPage> {
-  FormType _form = FormType.login;
+  
+  final TextEditingController emailCon = new TextEditingController();
+  final TextEditingController passCon = new TextEditingController();
+  
 
-  void _formChange() async {
+  String email = "";
+  String password = "";
+
+
+   LoginPageState() {
+    emailCon.addListener(emailListener);
+    passCon.addListener(passwordListener);
+  }
+ 
+ void emailListener() {
+    if (emailCon.text.isEmpty) {
+      email = "";
+    } else {
+      email = emailCon.text;
+    }
+  }
+
+  void passwordListener() {
+    if (passCon.text.isEmpty) {
+      password = "";
+    } else {
+      password = passCon.text;
+    }
+  }
+
+  FormType form = FormType.login;
+  void formChange() async {
     setState(() {
-      if (_form == FormType.register) {
-        _form = FormType.login;
+      if (form == FormType.register) {
+        form = FormType.login;
       } else {
-        _form = FormType.register;
+        form = FormType.register;
       }
     });
   }
@@ -36,38 +65,40 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       bottomNavigationBar: NavBar(0),
-      appBar: _buildBar(context),
+      appBar: buildBar(context),
       body: new Container(
         padding: EdgeInsets.all(16.0),
         child: new Column(
           children: <Widget>[
-            _buildTextFields(),
-            _buildButtons(),
+            buildTextFields(),
+            buildButtons(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildBar(BuildContext context) {
+  Widget buildBar(BuildContext context) {
     return new AppBar(
-      title: new Text("Register"),
+      title: new Text("Login"),
       centerTitle: true,
     );
   }
 
-  Widget _buildTextFields() {
+  Widget buildTextFields() {
     return new Container(
       child: new Column(
         children: <Widget>[
           new Container(
             child: new TextField(
+               controller: emailCon,
               decoration: new InputDecoration(labelText: 'Email'),
               //obscureText: true,
             ),
           ),
           new Container(
             child: new TextField(
+              controller: passCon,
               decoration: new InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
@@ -77,22 +108,31 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildButtons() {
-    if (_form == FormType.login) {
+  Widget buildButtons() {
+    if (form == FormType.login) {
       return new Container(
         child: new Column(
           children: <Widget>[
             new RaisedButton(
               child: new Text('Login'),
-              onPressed: _pressedLogin,
+              onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(emailCon.text),
+              );
+            },
+          );
+              },
             ),
             new FlatButton(
               child: new Text('Dont have an account? Tap here to register.'),
-              onPressed: _formChange,
+              onPressed: formChange,
             ),
             new FlatButton(
               child: new Text('Forgot Password?'),
-              onPressed: _pressedForgot,
+              onPressed: pressedForgot,
             )
           ],
         ),
@@ -103,11 +143,11 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             new RaisedButton(
               child: new Text('Create an Account'),
-              onPressed: _createAccountPressed,
+              onPressed: createAccountPressed,
             ),
             new FlatButton(
               child: new Text('Have an account? Click here to login.'),
-              onPressed: _formChange,
+              onPressed: formChange,
             )
           ],
         ),
@@ -115,15 +155,15 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _pressedForgot() {
+  void pressedForgot() {
     print('Forgot Button was pressed');
   }
 
-  void _createAccountPressed() {
+  void createAccountPressed() {
     print('The user wants to create an account');
   }
 
-  void _pressedLogin() {
+  void pressedLogin() {
     print('Login Button was pressed');
   }
 }
