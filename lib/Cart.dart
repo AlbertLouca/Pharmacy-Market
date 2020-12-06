@@ -1,6 +1,8 @@
+import 'package:Pharmacy/checkout.dart';
 import 'package:flutter/material.dart';
 import 'Items.dart';
 import 'main.dart';
+
 class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,20 +22,22 @@ class Cart extends StatelessWidget {
         currentIndex: 1,
         onTap: (index) {
           switch (index) {
-
             case 0:
               {
-
-
-
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) =>Home()),
+                  MaterialPageRoute(builder: (context) => Home()),
                 );
-
               }
               break;
-
+            case 1:
+              {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Checkout()),
+                );
+              }
+              break;
           }
         },
       ),
@@ -41,27 +45,21 @@ class Cart extends StatelessWidget {
         title: Text("Cart"),
       ),
       body: SafeArea(
-          child:Added(),),
-      //row gdid ba3d el satr da
+        child: Added(),
+      ),
     );
   }
 }
-
-
 
 class LineCart extends StatelessWidget {
   @override
   int id;
   int quantity;
-  LineCart(int id, int quantity){
-    this.id=id;
-    this.quantity=quantity;
-
-
+  LineCart(int id, int quantity) {
+    this.id = id;
+    this.quantity = quantity;
   }
   Widget build(BuildContext context) {
-
-
     return Container(
         color: Colors.white24,
         margin: EdgeInsets.all(25.0),
@@ -70,15 +68,17 @@ class LineCart extends StatelessWidget {
             FlutterLogo(
               size: 60.0,
             ),
-            Text( 'test $id                                    Quantity: $quantity'                         ),
+            Text(
+                'test $id                                    Quantity: $quantity'),
           ],
         ));
   }
 }
-Widget Added(){
+
+Widget Added() {
   List<Widget> list = new List<Widget>();
-    for (int key in SelectedItems.keys) {
-      list.add(LineCart(key, SelectedItems[key]));
-    }
+  for (int key in SelectedItems.keys) {
+    list.add(LineCart(key, SelectedItems[key]));
+  }
   return new ListView(children: list);
 }
