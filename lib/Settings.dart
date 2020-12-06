@@ -2,7 +2,24 @@ import 'package:flutter/material.dart';
 import 'log.dart';
 import 'NavBar.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  _MySettings createState() => _MySettings();
+}
+
+class _MySettings extends State<Settings> with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+  @override
+  void initState() {
+    super.initState();
+    animationController = new AnimationController(
+      vsync: this,
+      duration: new Duration(seconds: 7),
+    );
+
+    animationController.repeat();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,8 +34,19 @@ class Settings extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 backgroundColor: Colors.white,
-                radius: 80,
-                backgroundImage: AssetImage('build/images/sett.png'),
+                radius: 55,
+                child: new AnimatedBuilder(
+                  animation: animationController,
+                  child: new Container(
+                    child: new Image.asset('build/images/sett.png'),
+                  ),
+                  builder: (BuildContext context, Widget _widget) {
+                    return new Transform.rotate(
+                      angle: animationController.value * 6.3,
+                      child: _widget,
+                    );
+                  },
+                ),
               ),
               Text(
                 'Settings',
