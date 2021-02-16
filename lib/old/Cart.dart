@@ -1,7 +1,7 @@
 import 'package:Pharmacy/checkout.dart';
 import 'package:flutter/material.dart';
-import 'Items.dart';
-import 'main.dart';
+import '../Items.dart';
+import '../main.dart';
 
 class Cart extends StatelessWidget {
   @override

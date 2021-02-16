@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'NavBar.dart';
+import '../NavBar.dart';
 
 class Contact extends StatelessWidget {
   @override
