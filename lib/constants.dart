@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-const kBackGroundColor=Colors.cyan;
-const kFillTextFeildColor=Colors.cyanAccent;
+const kBackGroundColor=Colors.deepPurple;
+const kFillTextFeildColor=Colors.lightGreenAccent;
 const kProductsCollection='Products';
 const kProductName='Name';
 const kProductPrice='Price';

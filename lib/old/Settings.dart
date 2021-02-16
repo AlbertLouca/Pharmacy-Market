@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../log.dart';
 import '../NavBar.dart';
+import 'NavBar.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -121,8 +122,7 @@ class _MySettings extends State<Settings> with SingleTickerProviderStateMixin {
                 margin: EdgeInsets.all(10),
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Login()));
+
                   },
                   color: Colors.green[400],
                   child: Padding(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Profile.dart';
 import 'Settings.dart';
-import 'main.dart';
+
 
 class NavBar extends StatefulWidget {
   @override
@@ -51,19 +51,13 @@ class _NavBarState extends State<NavBar> {
           case 1:
             {
               setState(() {});
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Home()),
-              );
+
             }
             break;
           case 2:
             {
               setState(() {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Settings()),
-                );
+
               });
             }
             break;
