@@ -10,6 +10,7 @@ class Category extends StatelessWidget {
     return Scaffold(
           bottomNavigationBar: NavBar(1),
           appBar: AppBar(
+            backgroundColor: KAppBarColor,
             title: Text("Pharmacy App"),
           ),
           body: Center(
@@ -21,7 +22,7 @@ class Category extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context,ProductsScreen.id,);
                     },
-                    color: Colors.red,
+                    color: KAppBarColor,
                     padding: EdgeInsets.fromLTRB(20, 50, 20, 50),
                     textColor: Colors.white,
                     child: const Text('Beauty & Cosmetics',
@@ -32,7 +33,7 @@ class Category extends StatelessWidget {
                     onPressed: () {
 
                     },
-                    color: Colors.blue,
+                    color: KAppBarColor,
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                     textColor: Colors.white,
                     child:
@@ -44,7 +45,7 @@ class Category extends StatelessWidget {
 
                     },
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
-                    color: Colors.green,
+                    color: KAppBarColor,
                     textColor: Colors.white,
                     child: const Text('Mom & Baby', style: TextStyle(fontSize: 20)),
                   ),

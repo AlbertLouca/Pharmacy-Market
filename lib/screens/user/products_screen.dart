@@ -20,13 +20,22 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: kBackGroundColor,
+
         bottomNavigationBar:NavBar(1),
         appBar: AppBar(
-
+          backgroundColor: KAppBarColor,
          title:Text('Products'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.shopping_bag_rounded),
+              onPressed: () {
+
+              },
+            ),
+          ],
        ),
       body: StreamBuilder(
+
         stream: Firestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){             // auto update
         if  (!snapshot.hasData){
@@ -41,24 +50,50 @@ class _ProductsscreenState extends State<ProductsScreen> {
              children: snapshot.data.documents.map((product){
 
                return Container(
-                 height: MediaQuery.of(context).size.height /6,
+
+                 height: MediaQuery.of(context).size.height /5,
                    width:  MediaQuery.of(context).size.width * 0.8,
-                   color: Colors.white24,
+
                    margin: EdgeInsets.all(25.0),
-                   child: Row(
+                   child: Wrap (
                      children: [
+
+
                        FlutterLogo(
                          size: 70.0,
                        ),
-                       Text( product['Name']),
+                       new Chip (
+                         label:  Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+
+                       ),
+                     // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                       Text( '       \n \n '+"   "+product['Price' ]+ ' EGP', style: TextStyle( color:Colors.green)),
+                       Text('  '),
+
                        IconButton(
                          onPressed: (){
 
 
                          },
+
+                         icon: Icon(
+                           Icons.favorite_border_outlined,
+                           color: Colors.black,
+
+                         ),
+
+                         color: Colors.red[500],
+                       ),
+                       Text('    '),
+                       IconButton(
+                         onPressed: (){
+
+
+                         },
+
                          icon: Icon(
                            Icons.add_shopping_cart,
-                           color: Colors.black,
+                           color: Colors.blue,
 
                          ),
 
