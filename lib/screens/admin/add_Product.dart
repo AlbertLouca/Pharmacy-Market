@@ -1,17 +1,54 @@
+
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/templates/GenericTextFeild.dart';
 import 'package:pharmacynew/models/Product.dart';
 import '../../constants.dart';
 import 'package:pharmacynew/models/Products.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:path/path.dart';
 final _product=Product();
-class AddProduct extends StatelessWidget {
+class AddProduct extends StatefulWidget {
   static String id='AddProduct';
+
+  @override
+  _AddProductState createState() => _AddProductState();
+}
+
+class _AddProductState extends State<AddProduct> {
+
   String _name,_description;
+
  String _price;
+
   final _Products =Products();
+
   final GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
+File _image;
+
+
   @override
   Widget build(BuildContext context) {
+    Future getImage() async {
+var image = await ImagePicker.pickImage(source:ImageSource.gallery);
+setState(() {
+  _image=image;
+  print('Image Path $_image');
+});
+    }
+    Future uploadPic(BuildContext context )async{
+      String fileName=basename(_image.path);
+      firebase_storage.Reference  firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child(fileName);
+      firebase_storage.UploadTask uploadTask = firebaseStorageRef.putFile(_image);
+      firebase_storage.TaskSnapshot snapshot = await uploadTask;
+      setState(() {
+        print('iamge was uploaded');
+        Scaffold.of(context).showSnackBar(SnackBar(content:Text ('Product was added Successfuly')));
+
+      });
+
+    }
 return Scaffold(
     backgroundColor: kBackGroundColor,
 
@@ -20,6 +57,33 @@ return Scaffold(
       child: Column(
 mainAxisAlignment: MainAxisAlignment.center,
    children: <Widget>[
+
+     SizedBox(height: 20.0,),
+
+
+
+
+
+            CircleAvatar(radius: 100,
+            backgroundColor: kFillTextFeildColor,
+            child:ClipOval(
+
+              child:SizedBox(
+
+                width: 180.0,
+                height: 180.0,
+                child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Text('Upload an image'),
+
+              )
+
+            )),
+
+     SizedBox(height:30),
+
+ RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.white,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
+
+
+
       GenericTextFeild(onClick: (value){
         _name=value;
 
@@ -46,13 +110,15 @@ mainAxisAlignment: MainAxisAlignment.center,
            onPressed: (){if (_globalKey.currentState.validate())
 _globalKey.currentState.save();
 
-_Products.addProduct(Product(
-  pName: _name,
-  pPrice:_price,
-  pDescription: _description
 
+             _Products.addProduct(Product(
+                 pName: _name,
+                 pPrice: _price,
+                 pDescription: _description
 
-));
+             ));
+             uploadPic(context);
+
 
              },
            shape: RoundedRectangleBorder(

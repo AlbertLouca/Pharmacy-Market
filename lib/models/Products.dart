@@ -2,14 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pharmacynew/constants.dart';
 import 'package:pharmacynew/models/Product.dart';
-final Firestore _firestore=Firestore.instance;
+import 'package:firebase_core/firebase_core.dart';
+
+final  _firestore= FirebaseFirestore.instance;
 
 class Products with ChangeNotifier{
 
 
  void addProduct(Product p) {
 //print (this.pName);
-    _firestore.collection(kProductsCollection).add(
+   FirebaseFirestore.instance.collection(kProductsCollection).add(
 
         {
           kProductName: p.pName,
@@ -20,4 +22,6 @@ class Products with ChangeNotifier{
         });
     //notifyListeners();
   }
+
+
 }

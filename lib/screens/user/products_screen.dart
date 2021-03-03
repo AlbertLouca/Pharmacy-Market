@@ -5,11 +5,12 @@ import 'package:pharmacynew/models/Products.dart';
 import 'package:pharmacynew/old/NavBar.dart';
 import '../../constants.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductsScreen extends StatefulWidget {
   static String id='ProductScreen';
 
-  final Firestore firestore=Firestore.instance;
+  final Firestore =FirebaseFirestore.instance;
   @override
   _ProductsscreenState createState() => _ProductsscreenState();
 
@@ -27,7 +28,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
          title:Text('Products'),
        ),
       body: StreamBuilder(
-        stream: Firestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
+        stream: FirebaseFirestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){             // auto update
         if  (!snapshot.hasData){
           return Center(
@@ -38,7 +39,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
           }
 
           return ListView(
-             children: snapshot.data.documents.map((product){
+             children: snapshot.data.docs.map((product){
 
                return Container(
                  height: MediaQuery.of(context).size.height /6,
