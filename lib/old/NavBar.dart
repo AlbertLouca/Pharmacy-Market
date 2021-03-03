@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacynew/constants.dart';
 import 'Profile.dart';
 import 'Settings.dart';
 
@@ -20,6 +21,7 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: KAppBarColor,
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.account_circle),

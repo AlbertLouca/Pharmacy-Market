@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Product.dart';
@@ -5,12 +6,11 @@ import 'package:pharmacynew/models/Products.dart';
 import 'package:pharmacynew/old/NavBar.dart';
 import '../../constants.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ProductsScreen extends StatefulWidget {
   static String id='ProductScreen';
 
-  final Firestore =FirebaseFirestore.instance;
+  final  Firestore= FirebaseFirestore.instance;
   @override
   _ProductsscreenState createState() => _ProductsscreenState();
 
@@ -21,69 +21,104 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: kBackGroundColor,
+
         bottomNavigationBar:NavBar(1),
         appBar: AppBar(
+          backgroundColor: KAppBarColor,
+          title:Text('Products'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.shopping_bag_rounded),
+              onPressed: () {
 
-         title:Text('Products'),
-       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){             // auto update
-        if  (!snapshot.hasData){
-          return Center(
+              },
+            ),
+          ],
+        ),
+        body: StreamBuilder(
 
-            child: Text('No Data to Show'),
-             );
+            stream:FirebaseFirestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
+            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){             // auto update
+              if  (!snapshot.hasData){
+                return Center(
 
-          }
+                  child: Text('No Data to Show'),
+                );
 
-          return ListView(
-             children: snapshot.data.docs.map((product){
+              }
 
-               return Container(
-                 height: MediaQuery.of(context).size.height /6,
-                   width:  MediaQuery.of(context).size.width * 0.8,
-                   color: Colors.white24,
-                   margin: EdgeInsets.all(25.0),
-                   child: Row(
-                     children: [
-                       FlutterLogo(
-                         size: 70.0,
-                       ),
-                       Text( product['Name']),
-                       IconButton(
-                         onPressed: (){
+              return ListView(
+                children: snapshot.data.docs.map((product){
 
+                  return Container(
 
-                         },
-                         icon: Icon(
-                           Icons.add_shopping_cart,
-                           color: Colors.black,
+                      height: MediaQuery.of(context).size.height /5,
+                      width:  MediaQuery.of(context).size.width * 0.8,
 
-                         ),
-
-                         color: Colors.red[500],
-                       ),
-                     ],
-                   ));
+                      margin: EdgeInsets.all(25.0),
+                      child: Wrap (
+                        children: [
 
 
+                          FlutterLogo(
+                            size: 70.0,
+                          ),
+                          new Chip (
+                            label:  Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
-  }).toList(),
+                          ),
+                          // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                          Text( '       \n \n '+"   "+product['Price' ]+ ' EGP', style: TextStyle( color:Colors.green)),
+                          Text('  '),
 
-);
+                          IconButton(
+                            onPressed: (){
 
 
-        }
+                            },
+
+                            icon: Icon(
+                              Icons.favorite_border_outlined,
+                              color: Colors.black,
+
+                            ),
+
+                            color: Colors.red[500],
+                          ),
+                          Text('    '),
+                          IconButton(
+                            onPressed: (){
+
+
+                            },
+
+                            icon: Icon(
+                              Icons.add_shopping_cart,
+                              color: Colors.blue,
+
+                            ),
+
+                            color: Colors.red[500],
+                          ),
+                        ],
+                      ));
 
 
 
-      )
+                }).toList(),
+
+              );
+
+
+            }
+
+
+
+        )
     );
 
 
-}
+  }
 }
 //
 // Widget _Body(BuildContext context){

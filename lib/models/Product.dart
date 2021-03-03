@@ -8,12 +8,12 @@ class  Product with ChangeNotifier{
   String pPrice;
   String pDescription;
   String pID;
-  String ImageURl;
+  String pImageURl;
   bool isFavorite;
 
 
 
-Product({this.pName,this.pPrice,this.pDescription});
+Product({this.pName,this.pPrice,this.pDescription,this.pImageURl});
 
 
   void toggleFavoriteStatus(){

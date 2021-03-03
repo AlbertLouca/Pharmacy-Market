@@ -1,5 +1,6 @@
 
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/templates/GenericTextFeild.dart';
 import 'package:pharmacynew/models/Product.dart';
@@ -21,6 +22,8 @@ class _AddProductState extends State<AddProduct> {
   String _name,_description;
 
  String _price;
+ String _picturePath;
+
 
   final _Products =Products();
 
@@ -34,16 +37,22 @@ File _image;
 var image = await ImagePicker.pickImage(source:ImageSource.gallery);
 setState(() {
   _image=image;
-  print('Image Path $_image');
+
+  print('Image Path' + _image.path);
 });
     }
     Future uploadPic(BuildContext context )async{
-      String fileName=basename(_image.path);
-      firebase_storage.Reference  firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child(fileName);
+      int randomNumber = Random().nextInt(100000);
+      String imageLocation = 'product/image${randomNumber}.jpg';
+      //String fileName=basename(_image.path);
+      firebase_storage.Reference  firebaseStorageRef = firebase_storage.FirebaseStorage.instance.ref().child(imageLocation);
       firebase_storage.UploadTask uploadTask = firebaseStorageRef.putFile(_image);
       firebase_storage.TaskSnapshot snapshot = await uploadTask;
+      _picturePath = await firebaseStorageRef.getDownloadURL();
+
+      
       setState(() {
-        print('iamge was uploaded');
+        print('image was uploaded');
         Scaffold.of(context).showSnackBar(SnackBar(content:Text ('Product was added Successfuly')));
 
       });
@@ -114,7 +123,8 @@ _globalKey.currentState.save();
              _Products.addProduct(Product(
                  pName: _name,
                  pPrice: _price,
-                 pDescription: _description
+                 pDescription: _description,
+                 pImageURl: _picturePath
 
              ));
              uploadPic(context);
