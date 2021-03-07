@@ -50,7 +50,7 @@ setState(() {
       firebase_storage.TaskSnapshot snapshot = await uploadTask;
       _picturePath = await firebaseStorageRef.getDownloadURL();
 
-      
+
       setState(() {
         print('image was uploaded');
         Scaffold.of(context).showSnackBar(SnackBar(content:Text ('Product was added Successfuly')));
