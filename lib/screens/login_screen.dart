@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:pharmacynew/screens/admin/add_Product.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'package:pharmacynew/screens/admin/manage_page.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
@@ -135,7 +136,18 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 color: Colors.white,
               ),
               child: MaterialButton(
-                  onPressed: () {},
+                   onPressed: () async {
+                  bool shouldNavigate =
+                  await signIn(_email.text, _password.text);
+                  if (shouldNavigate) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddProduct(),
+                      ),
+                    );
+                  }
+                },
                   child: Text("Login")),
             ),
           ],
