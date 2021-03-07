@@ -48,64 +48,64 @@ class _ProductsscreenState extends State<ProductsScreen> {
               }
 
               return ListView(
-                children: snapshot.data.docs.map((product){
+                  children: snapshot.data.docs.map((products){
 
-                  return Container(
+                    return Container(
 
-                      height: MediaQuery.of(context).size.height /5,
-                      width:  MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.height /5,
+                        width:  MediaQuery.of(context).size.width * 0.8,
 
-                      margin: EdgeInsets.all(25.0),
-                      child: Wrap (
-                        children: [
-
-
-                          FlutterLogo(
-                            size: 70.0,
-                          ),
-                          new Chip (
-                            label:  Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-
-                          ),
-                          // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-                          Text( '       \n \n '+"   "+product['Price' ]+ ' EGP', style: TextStyle( color:Colors.green)),
-                          Text('  '),
-
-                          IconButton(
-                            onPressed: (){
+                        margin: EdgeInsets.all(25.0),
+                        child: Wrap (
+                          children: [
 
 
-                            },
-
-                            icon: Icon(
-                              Icons.favorite_border_outlined,
-                              color: Colors.black,
+                            FlutterLogo(
+                              size: 70.0,
+                            ),
+                            new Chip (
+                              label:  Text( products['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
                             ),
+                            // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                            Text( '       \n \n '+"   "+products['Price']+ ' EGP', style: TextStyle( color:Colors.green)),
+                            Text('  '),
 
-                            color: Colors.red[500],
-                          ),
-                          Text('    '),
-                          IconButton(
-                            onPressed: (){
+                            IconButton(
+                              onPressed: (){
 
 
-                            },
+                              },
 
-                            icon: Icon(
-                              Icons.add_shopping_cart,
-                              color: Colors.blue,
+                              icon: Icon(
+                                Icons.favorite_border_outlined,
+                                color: Colors.black,
 
+                              ),
+
+                              color: Colors.red[500],
                             ),
-
-                            color: Colors.red[500],
-                          ),
-                        ],
-                      ));
+                            Text('    '),
+                            IconButton(
+                              onPressed: (){
 
 
+                              },
 
-                }).toList(),
+                              icon: Icon(
+                                Icons.add_shopping_cart,
+                                color: Colors.blue,
+
+                              ),
+
+                              color: Colors.red[500],
+                            ),
+                          ],
+                        ));
+
+
+
+                  }).toList()
 
               );
 
