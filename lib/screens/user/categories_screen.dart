@@ -3,7 +3,7 @@ import 'package:pharmacynew/old/NavBar.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import '../../constants.dart';
 
-class Category extends StatelessWidget {
+class CategoryScreen extends StatelessWidget {
   static String id='CategoriesScreen';
   @override
   Widget build(BuildContext context) {
@@ -144,7 +144,7 @@ class Home extends StatelessWidget {
                 RaisedButton.icon(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Category()));
+                        MaterialPageRoute(builder: (context) => CategoryScreen()));
                   },
                   color: Colors.orange,
                   padding: EdgeInsets.fromLTRB(60, 50, 50, 50),

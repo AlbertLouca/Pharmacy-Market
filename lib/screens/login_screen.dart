@@ -119,7 +119,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Category(),
+                        builder: (context) => CategoryScreen(),
                       ),
                     );
                   }

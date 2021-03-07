@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget{
 
       initialRoute: ProductsScreen.id,
       routes: {
-        Category.id:(context)=>Category(),
+        CategoryScreen.id:(context)=>CategoryScreen(),
         LoginScreen.id:(context)=>LoginScreen(),
         AdminScreen.id:(context)=>AdminScreen(),
         Manage_screen.id:(context)=>Manage_screen(),

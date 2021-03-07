@@ -66,7 +66,7 @@ class _NavBarState extends State<NavBar> {
           case 2:
             {
               setState(() {
-                
+
                   Navigator.pushNamed(context,AddProduct.id,);
 
               });
