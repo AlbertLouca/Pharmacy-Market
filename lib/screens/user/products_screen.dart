@@ -1,11 +1,13 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
 import 'package:pharmacynew/old/NavBar.dart';
+import 'package:provider/provider.dart';
 import '../../constants.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 class ProductsScreen extends StatefulWidget {
   static String id='ProductScreen';
@@ -18,6 +20,8 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsscreenState extends State<ProductsScreen> {
+
+  Cart cart;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +37,17 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
               },
             ),
-          ],
-        ),
+            Padding(
+              padding: const EdgeInsets.only(right: 30),
+              child: Consumer<Cart>(builder:(context,cart,child){
+                return Text('${cart.get_count()}');
+              })
+
+            )
+
+          ],  ),
+
+
         body: StreamBuilder(
 
             stream:FirebaseFirestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
@@ -49,6 +62,8 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
               return ListView(
                   children: snapshot.data.docs.map((products){
+                    Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl']);
+                   // x.pName=products['Name']; x.pPrice=products['Price']; x.pDescription=products['Description']; x.pImageURl=products['Image URL'];
 
                     return Container(
 
@@ -68,7 +83,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
                             ),
                             // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-                            Text( '       \n \n '+"   "+products['Price']+ ' EGP', style: TextStyle( color:Colors.green)),
+                            Text( '       \n \n '+"   "+products['Price'].toString()+ ' EGP', style: TextStyle( color:Colors.green)),
                             Text('  '),
 
                             IconButton(
@@ -81,22 +96,22 @@ class _ProductsscreenState extends State<ProductsScreen> {
                                 Icons.favorite_border_outlined,
                                 color: Colors.black,
 
-                              ),
+                              ),padding: const EdgeInsets.only(right:10),
 
                               color: Colors.red[500],
                             ),
                             Text('    '),
                             IconButton(
                               onPressed: (){
-
-
+                               // cart.AddtoCart('test');
+                              cart.Products.add(x);
                               },
 
                               icon: Icon(
-                                Icons.add_shopping_cart,
+                                Icons.add,
                                 color: Colors.blue,
 
-                              ),
+                              ),padding: const EdgeInsets.only(right:10),
 
                               color: Colors.red[500],
                             ),

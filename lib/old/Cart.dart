@@ -7,40 +7,7 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.money_rounded),
-            label: 'CheckOut',
-          ),
-        ],
-        selectedItemColor: Colors.green[800],
-        currentIndex: 1,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Home()),
-                );
-              }
-              break;
-            case 1:
-              {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Checkout()),
-                );
-              }
-              break;
-          }
-        },
-      ),
+
       appBar: AppBar(
         title: Text("Cart"),
       ),

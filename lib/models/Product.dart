@@ -5,7 +5,7 @@ import 'package:pharmacynew/constants.dart';
 
 class  Product with ChangeNotifier{
   String pName;
-  String pPrice;
+  double pPrice;
   String pDescription;
   String pID;
   String pImageURl;
