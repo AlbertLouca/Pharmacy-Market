@@ -66,11 +66,26 @@ final _products= new Products();
                         margin: EdgeInsets.all(25.0),
                         child: Wrap (
                           children: [
+CircleAvatar(radius: 50,
+                            child:ClipOval(
 
+                                child:SizedBox(
 
-                            FlutterLogo(
-                              size: 70.0,
+                                  width: 180.0,
+                                  height: 180.0,
+                                  child :Image.network(x.pImageURl,
+                                      fit:BoxFit.fill),
+
+                                )
+
                             ),
+
+),
+
+
+                          /*  FlutterLogo(
+                              size: 70.0,
+                            ),*/
                             new Chip (
                               label:  Text( products['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
