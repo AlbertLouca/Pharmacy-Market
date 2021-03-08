@@ -126,33 +126,47 @@ print('done'+_picturePath);
               ButtonTheme(
                 minWidth: 80.0,
                 height: 60.0,
-                child: RaisedButton.icon(
+                child: Builder(
+                  builder: (context)=>RaisedButton.icon(
 
-                    onPressed: () async{if (_globalKey.currentState.validate())
-                      await uploadPic(context);
-                    //Future.delayed(const Duration(milliseconds: 4000));
+                      onPressed: () async{if (_globalKey.currentState.validate())
+                        try {
+                          await uploadPic(context);
+                          if(_picturePath == null)
+                            {
+                              _picturePath="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-                    _globalKey.currentState.save();
-                    //uploadPic(context);
+                            }
+                          //Future.delayed(const Duration(milliseconds: 4000));
+
+                          _globalKey.currentState.save();
+                          //uploadPic(context);
 
 
-                    _Products.addProduct(Product(
-                        pName: _name,
-                        pPrice: _price,
-                        pDescription: _description,
-                        pImageURl: _picturePath
-                    ));
-                      //print('after for loop '+_picturePath);
+                          _Products.addProduct(Product(
+                              pName: _name,
+                              pPrice: _price,
+                              pDescription: _description,
+                              pImageURl: _picturePath
+                          ));
+                          //print('after for loop '+_picturePath);
+                        }
+                        catch (e){
+                        Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
+                        ),
+                        ));
 
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                    label: Text('Save',
-                      style: TextStyle(color: Colors.white),),
-                    icon: Icon(Icons.add, color:Colors.white,),
-                    textColor: Colors.white,
+                        }
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                      label: Text('Save',
+                        style: TextStyle(color: Colors.white),),
+                      icon: Icon(Icons.add, color:Colors.white,),
+                      textColor: Colors.white,
 
-                    color: Colors.black),
+                      color: Colors.black),
+                ),
               ),
 
             ],
