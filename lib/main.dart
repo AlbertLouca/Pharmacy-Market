@@ -5,6 +5,7 @@ import 'package:pharmacynew/screens/admin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/screens/admin/manage_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pharmacynew/screens/user/Cart_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget{
     },
     child: MaterialApp(
 
-      initialRoute: Manage_screen.id,
+      initialRoute: ProductsScreen.id,
       routes: {
+        Cart_screen.id:(context)=>Cart_screen(),
         CategoryScreen.id:(context)=>CategoryScreen(),
         LoginScreen.id:(context)=>LoginScreen(),
         AdminScreen.id:(context)=>AdminScreen(),
