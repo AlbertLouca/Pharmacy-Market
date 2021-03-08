@@ -23,7 +23,7 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsscreenState extends State<ProductsScreen> {
 
   Cart cart;
-  //Products items;
+  Products items;
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -66,6 +66,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                   children: snapshot.data.docs.map((products){
                     Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl']);
 
+                   // items.products.add(x);
 
                     return Container(
 
@@ -86,7 +87,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                                 label:  Text( x.pName, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
                               ),
-                              // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+
                               Text( '       \n \n '+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
                               Text('  '),
 
@@ -107,7 +108,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                               Text('    '),
                               IconButton(
                                 onPressed: (){
-                                
+
 
                                   cart.AddtoCart(x);
 
