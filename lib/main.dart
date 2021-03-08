@@ -8,6 +8,8 @@ import 'package:pharmacynew/screens/login_screen.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import 'models/Cart.dart';
+import 'screens/admin/add_Product.dart';
+import 'screens/user/products_screen.dart';
 void main ()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
