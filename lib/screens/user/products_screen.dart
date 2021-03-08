@@ -22,7 +22,7 @@ class ProductsScreen extends StatefulWidget {
 class _ProductsscreenState extends State<ProductsScreen> {
 
   Cart cart;
-
+  //Products items;
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -63,7 +63,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
               return ListView(
                   children: snapshot.data.docs.map((products){
                     Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl']);
-                   // x.pName=products['Name']; x.pPrice=products['Price']; x.pDescription=products['Description']; x.pImageURl=products['Image URL'];
+
 
                     return Container(
 
@@ -71,52 +71,60 @@ class _ProductsscreenState extends State<ProductsScreen> {
                         width:  MediaQuery.of(context).size.width * 0.8,
 
                         margin: EdgeInsets.all(25.0),
-                        child: Wrap (
-                          children: [
+                        child: Consumer<Cart>(builder: (context,cart,child){
+
+                          return Wrap (
+                            children: [
 
 
-                            FlutterLogo(
-                              size: 70.0,
-                            ),
-                            new Chip (
-                              label:  Text( products['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                              FlutterLogo(
+                                size: 70.0,
+                              ),
+                              new Chip (
+                                label:  Text( x.pName, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
-                            ),
-                            // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-                            Text( '       \n \n '+"   "+products['Price'].toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-                            Text('  '),
+                              ),
+                              // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                              Text( '       \n \n '+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
+                              Text('  '),
 
-                            IconButton(
-                              onPressed: (){
+                              IconButton(
+                                onPressed: (){
 
 
-                              },
+                                },
 
-                              icon: Icon(
-                                Icons.favorite_border_outlined,
-                                color: Colors.black,
+                                icon: Icon(
+                                  Icons.favorite_border_outlined,
+                                  color: Colors.black,
 
-                              ),padding: const EdgeInsets.only(right:10),
+                                ),padding: const EdgeInsets.only(right:10),
 
-                              color: Colors.red[500],
-                            ),
-                            Text('    '),
-                            IconButton(
-                              onPressed: (){
-                               // cart.AddtoCart('test');
-                              cart.Products.add(x);
-                              },
+                                color: Colors.red[500],
+                              ),
+                              Text('    '),
+                              IconButton(
+                                onPressed: (){
+                                
 
-                              icon: Icon(
-                                Icons.add,
-                                color: Colors.blue,
+                                  cart.AddtoCart(x);
 
-                              ),padding: const EdgeInsets.only(right:10),
+                                },
 
-                              color: Colors.red[500],
-                            ),
-                          ],
-                        ));
+                                icon: Icon(
+                                  Icons.add,
+                                  color: Colors.blue,
+
+                                ),padding: const EdgeInsets.only(right:10),
+
+                                color: Colors.red[500],
+                              ),
+                            ],
+                          );
+                        }
+                        )
+
+                    );
 
 
 
@@ -135,25 +143,3 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
   }
 }
-//
-// Widget _Body(BuildContext context){
-//   CollectionReference Products = Firestore.instance.collection(kProductsCollection);
-//
-//   return FutureBuilder<DocumentSnapshot>(
-//     future: Products.
-//     builder:
-//         (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-//
-//       if (snapshot.hasError) {
-//         return Text("Something went wrong");
-//       }
-//
-//       if (snapshot.connectionState == ConnectionState.done) {
-//         Map<String, dynamic> data = snapshot.data.data();
-//         return Text("Full Name: ${data['full_name']} ${data['last_name']}");
-//       }
-//
-//       return Text("loading");
-//     },
-//   );
-// }
