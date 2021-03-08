@@ -6,6 +6,7 @@ import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
 import 'package:pharmacynew/old/NavBar.dart';
+import 'package:pharmacynew/screens/user/Cart_screen.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 
@@ -34,7 +35,8 @@ class _ProductsscreenState extends State<ProductsScreen> {
             IconButton(
               icon: Icon(Icons.shopping_bag_rounded),
               onPressed: () {
- //test
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Cart_screen()));
               },
             ),
             Padding(
