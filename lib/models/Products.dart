@@ -26,14 +26,24 @@ class Products with ChangeNotifier{
 
 
 
-  updateProduct(String name,String Url)async{
-    CollectionReference  collectionReference =FirebaseFirestore.instance.collection(kProductsCollection).where(kProductName, isEqualTo: name);
-    QuerySnapshot querySnapshot =await collectionReference.get();
-    querySnapshot.docs[0].reference.update({kProductImageUrl:Url});
+  updateProduct(data,documentID)async{
+
+   _firestore.collection(kProductsCollection).doc(documentID).update(data);
+    //CollectionReference  collectionReference =FirebaseFirestore.instance.collection(kProductsCollection).where(kProductName, isEqualTo: name);
+   // QuerySnapshot querySnapshot =await collectionReference.get();
+    //querySnapshot.docs[0].reference.update({kProductImageUrl:Url});
 
 
 
   }
+
+  deleteProduct(documentId)
+  {
+    _firestore.collection(kProductsCollection).doc(documentId).delete();
+
+
+  }
+
 
    }
 

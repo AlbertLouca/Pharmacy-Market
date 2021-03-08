@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacynew/screens/admin/EditProduct.dart';
+import 'package:pharmacynew/screens/admin/View_Product.dart';
 import 'package:pharmacynew/screens/admin/add_Product.dart';
 
 import '../../constants.dart';
@@ -30,23 +32,19 @@ children: <Widget> [
 
   ),
 
-  RaisedButton.icon(onPressed: (){}, icon:
-  Icon(Icons.edit),
+  RaisedButton.icon(onPressed: (){
+    Navigator.pushNamed(context, ViewProduct.id);
+
+  }, icon:
+  Icon(Icons.view_agenda_rounded),
 
 
-      label: Text('Edit Product    ')
-
-
-  ),
-
-  RaisedButton.icon(onPressed: (){}, icon:
-  Icon(Icons.delete),
-
-
-      label: Text('Delete Product')
+      label: Text('View Product    ')
 
 
   ),
+
+
 
 
 ],

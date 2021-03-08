@@ -1,3 +1,5 @@
+import 'package:pharmacynew/screens/admin/EditProduct.dart';
+import 'package:pharmacynew/screens/admin/View_Product.dart';
 import 'package:pharmacynew/screens/admin/add_Product.dart';
 import 'package:pharmacynew/screens/admin_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget{
     },
     child: MaterialApp(
 
-      initialRoute: ProductsScreen.id,
+      initialRoute: Manage_screen.id,
       routes: {
         CategoryScreen.id:(context)=>CategoryScreen(),
         LoginScreen.id:(context)=>LoginScreen(),
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget{
         Manage_screen.id:(context)=>Manage_screen(),
         AddProduct.id:(context)=>AddProduct(),
         ProductsScreen.id:(context)=>ProductsScreen(),
-
+        ViewProduct.id:(context)=>ViewProduct(),
+        EditProduct.id:(context)=>EditProduct()
       },
 
 
