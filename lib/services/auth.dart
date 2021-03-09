@@ -10,11 +10,25 @@ import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 import '../constants.dart';
 
 
 class Auth with ChangeNotifier {
+  savePref (String id,String name, String phone,String mail,String address) async{
+
+SharedPreferences preferences = await SharedPreferences.getInstance();
+preferences.setString("id", id);
+preferences.setString("name", name);
+preferences.setString("phone", phone);
+preferences.setString("mail", mail);
+preferences.setString("address", address);
+
+
+  }
+
   String _token;
   DateTime _expiryDate;
   String _userId;
@@ -112,10 +126,10 @@ class Auth with ChangeNotifier {
             },
           ),
         );
-         FlutterSession().set("fname", user.fname);
-         FlutterSession().set("mail", user.mail);
-         FlutterSession().set("phone", user.phone);
-         FlutterSession().set("address", user.address);
+         //FlutterSession().set("fname", user.fname);
+         //FlutterSession().set("mail", user.mail);
+         //FlutterSession().set("phone", user.phone);
+         //FlutterSession().set("address", user.address);
         u.addUser(UserModel(
 
           name: user.fname,
@@ -126,6 +140,7 @@ class Auth with ChangeNotifier {
           address: user.address,
 
         ),_userId);
+        savePref(_userId, user.fname, user.phone, user.mail, user.address);
 
       }
      

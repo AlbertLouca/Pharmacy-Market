@@ -1,9 +1,80 @@
 import 'package:flutter/material.dart';
 import 'NavBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
 
-class Profile extends StatelessWidget {
+class _ProfileState extends State<Profile> {
+   var ID,Name,Phone,mail,address,
+       Fname,Fmail,FPhone,Faddress;
+  getName()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+     //ID = preferences.getString('id');
+     return Name = preferences.getString("name");
+     mail = preferences.getString("mail");
+     address = preferences.getString("address");
+
+  }
+  getPhone()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+   return Phone = preferences.getString("phone");
+
+  }
+  getMail()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+   return mail = preferences.getString("mail");
+
+  }
+  getAddress()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    return address = preferences.getString("address");
+
+
+  }
+
+  @override
+  void initState(){
+
+getName().then((name){
+
+  setState(() {
+    Fname= name;
+  });
+});
+getPhone().then((phone){
+
+  setState(() {
+    FPhone  = phone;
+  });
+});
+getMail().then((mail){
+
+  setState(() {
+    Fmail= mail;
+  });
+});
+getAddress().then((address){
+
+  setState(() {
+    Faddress= address;
+  });
+});
+
+
+
+    super.initState();
+
+
+    //print('Name form init state'+Name);
+  }
+
   @override
   Widget build(BuildContext context) {
+    //print ('Name form build '+Name);
+    //getPref(ID,Name,Phone,mail,address);
     return MaterialApp(
       home: Scaffold(
         bottomNavigationBar: NavBar(0),
@@ -19,19 +90,16 @@ class Profile extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(
-                  radius: 70,
-                  backgroundImage: AssetImage('build/images/user.png'),
-                ),
+             
                 Text(
-                  'first name',
+                  Fname,
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  'last name',
+                  Fmail,
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.blue[300],
@@ -45,7 +113,7 @@ class Profile extends StatelessWidget {
                     color: Colors.teal[100],
                   ),
                 ),
-                Text('Welcome first name',
+                Text('Welcome '+Fname,
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 Card(
                     color: Colors.white,
@@ -57,7 +125,7 @@ class Profile extends StatelessWidget {
                         color: Colors.teal[900],
                       ),
                       title: Text(
-                        '+20 1235345828',
+                        FPhone,
                         style: TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.bold),
                       ),
@@ -72,7 +140,7 @@ class Profile extends StatelessWidget {
                       color: Colors.teal[900],
                     ),
                     title: Text(
-                      '221B Baker Street',
+                      Faddress,
                       style: TextStyle(fontSize: 20.0),
                     ),
                   ),
