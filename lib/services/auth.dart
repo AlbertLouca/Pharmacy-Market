@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Users.dart';
@@ -9,7 +10,6 @@ import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
 
 import '../constants.dart';
 
@@ -66,6 +66,7 @@ class Auth with ChangeNotifier {
         responseData['expiresIn'],
       )));
       print('User ID: $_userId');
+      await FlutterSession().set("id", _userId);
       print('Token: $_token');
       print('_expiryDate: $_expiryDate');
 ///////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +112,10 @@ class Auth with ChangeNotifier {
             },
           ),
         );
-
+         FlutterSession().set("fname", user.fname);
+         FlutterSession().set("mail", user.mail);
+         FlutterSession().set("phone", user.phone);
+         FlutterSession().set("address", user.address);
         u.addUser(UserModel(
 
           name: user.fname,

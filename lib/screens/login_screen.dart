@@ -49,7 +49,7 @@ void _showErrorDialog(String message) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Registeration Succesfull'),
+        title: Text('Logging  in ..'),
         content: Text(message),
       ),
     );

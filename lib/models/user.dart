@@ -2,7 +2,7 @@ enum AuthMode { Signup, Signin }
 
 class UserModel {
   String token;
-  String id;
+   String id;
   String name;
   String email;
   String password;

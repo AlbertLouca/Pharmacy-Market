@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_session/flutter_session.dart';
 import 'package:pharmacynew/old/NavBar.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import '../../constants.dart';
 
+Future<String> getsession (String x) async{
+  var fname = await FlutterSession().get(x);
+  return fname;
+
+}
+
 class CategoryScreen extends StatelessWidget {
   static String id='CategoriesScreen';
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
           bottomNavigationBar: NavBar(1),
-          appBar: AppBar(
+          appBar: AppBar(automaticallyImplyLeading: false,
             backgroundColor: KAppBarColor,
-            title: Text("Pharmacy App"),
+            title: Text("Pharmacy App " ),
           ),
           body: Center(
             child: Column(
