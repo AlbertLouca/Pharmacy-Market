@@ -27,7 +27,17 @@ _count+=1;
 
   notifyListeners();
 }
+  void Removefromcart(Product item){
 
+      Products.remove(item);
+
+
+
+    _price-=item.pPrice;
+    _count-=1;
+
+    notifyListeners();
+  }
 int get_count(){
   return _count;
 }

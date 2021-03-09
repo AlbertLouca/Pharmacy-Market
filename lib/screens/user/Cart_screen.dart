@@ -5,7 +5,7 @@ import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/old/NavBar.dart';
 import 'package:provider/provider.dart';
-
+import 'products_screen.dart';
 import '../../constants.dart';
 
 class Cart_screen extends StatefulWidget {
@@ -23,102 +23,86 @@ class _Cart_screenState extends State<Cart_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      bottomNavigationBar: NavBar(1),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money),
+            label: ' Confirm',
+          ),
+        ],
+        currentIndex: 1,
+        selectedItemColor: Colors.green[800],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              {
+                setState(() {
+
+                  Navigator.pushNamed(context,ProductsScreen.id,);
+
+
+                });
+              }
+              break;
+            case 1:
+              {
+
+
+              }
+              break;
+
+          }
+        },
+      ),
       appBar: AppBar(
         backgroundColor: KAppBarColor,
-        title: Text('Cart'),
+        title: Text('Checkout'),
+        actions: [
 
-      ),
-      body: Center(
-          child: Wrap(
-            children: [
+          Padding(
+              padding: const EdgeInsets.only(right: 40),
+              child: Consumer<Cart>(builder:(context,cart,child){
+                return Text('Total: ${cart.get_price()}',style: TextStyle(color: Colors.green),);
+              })
 
-
-              FlutterLogo(
-                size: 70.0,
-              ),
-              new Chip (
-                label: Text('x.pNam', textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 25)),
-
-              ),
-              // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-              Text('       \n \n ' + "   " + ' EGP',
-                  style: TextStyle(color: Colors.green)),
-              Text('  '),
-
-              IconButton(
-                onPressed: () {
-
-
-                },
-
-                icon: Icon(
-                  Icons.favorite_border_outlined,
-                  color: Colors.black,
-
-                ), padding: const EdgeInsets.only(right: 10),
-
-                color: Colors.red[500],
-              ),
-              Text('    '),
-              IconButton(
-                onPressed: () {
-
-
-                },
-
-                icon: Icon(
-                  Icons.add,
-                  color: Colors.blue,
-
-                ), padding: const EdgeInsets.only(right: 10),
-
-                color: Colors.red[500],
-              ),
-            ],
           )
 
-
+        ],
       ),
+      body: Consumer<Cart>(builder: (context,cart, child){
 
+       return ListView.builder(itemCount: cart.Products.length, itemBuilder: (context, i) {
+          return Card(
+
+            child: ListTile(title: //
+RichText(
+  text:TextSpan(
+    text:' ${cart.Products[i].pName}   ',
+style: TextStyle(color: Colors.black),
+children: <TextSpan>[
+  TextSpan(text: ' ${cart.Products[i].pPrice} EGP',style: TextStyle(color: Colors.green)   )
+]
+  )
+
+),
+              trailing: IconButton(icon: Icon(Icons.remove), onPressed: () {
+                cart.Removefromcart(cart.Products[i]);
+
+              },),),
+          );
+        }
+        );
+
+      },
+      )
+
+      ,
 
     );
   }
-
-
-}
-
-class carditem extends StatelessWidget{
-
-  @override
-  String name;
-  int quantity;
-  LineCart(String name, int quantity) {
-    this.name=name;
-    this.quantity = quantity;
-  }
-  Widget build(BuildContext context) {
-    return Container(
-        color: Colors.white24,
-        margin: EdgeInsets.all(25.0),
-        child: Row(
-          children: [
-            FlutterLogo(
-              size: 60.0,
-            ),
-            Text(
-                '$name                          Quantity: $quantity'),
-          ],
-        ));
-  }
-}
-Widget Added() {
-  List<Widget> list = new List<Widget>();
-  for (int key in produc ) {
-    list.add(LineCart(key, SelectedItems[key]));
-  }
-  return new ListView(children: list);
 }
