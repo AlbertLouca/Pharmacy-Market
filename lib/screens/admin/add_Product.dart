@@ -132,11 +132,7 @@ print('done'+_picturePath);
                       onPressed: () async{if (_globalKey.currentState.validate())
                         try {
                           await uploadPic(context);
-                          if(_picturePath == null)
-                            {
-                              _picturePath="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-                            }
                           //Future.delayed(const Duration(milliseconds: 4000));
 
                           _globalKey.currentState.save();
@@ -152,6 +148,7 @@ print('done'+_picturePath);
                           //print('after for loop '+_picturePath);
                         }
                         catch (e){
+                        print (e.toString());
                         Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
                         ),
                         ));

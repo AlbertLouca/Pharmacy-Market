@@ -19,10 +19,20 @@ class ViewProduct extends StatefulWidget {
 
 
 }
+List<String> myList=[];
 
 class _ViewProductState extends State<ViewProduct> {
 
 final _products= new Products();
+bool isSort1=false;
+bool isSort2=false;
+/*void sort1(List list)
+{
+  list.sort((a, b) => isSort1?a.compareTo(b): b.compareTo(a));
+
+}*/
+
+
   Widget build(BuildContext context) {
     return Scaffold(
 
@@ -30,7 +40,12 @@ final _products= new Products();
         appBar: AppBar(
           backgroundColor: KAppBarColor,
           title:Text('Products'),
-          actions: [
+          actions:<Widget> [
+
+/*IconButton(icon:Icon(Icons.sort_by_alpha), onPressed: (){
+  //sort1(myList);
+
+})*/
 
 
 
@@ -39,24 +54,28 @@ final _products= new Products();
 
         body: StreamBuilder(
 
-            stream:FirebaseFirestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
+            stream:FirebaseFirestore.instance.collection(kProductsCollection).snapshots(), //which table to read from table
+
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){             // auto update
               if  (!snapshot.hasData){
                 return Center(
 
-                  child: Text('No Data to Show'),
+                  child: Text('Loading..'),
                 );
 
               }
 
               return ListView(
                   children: snapshot.data.docs.map((products){
-                   //print( products.id);
+                    //products.;
+          //print( products.id);
                    //print(products['Name']);
                     Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl']);
                   x.pID=products.id;
-
+//myList.add(products['Name']);
+//print(myList);
                     // x.pName=products['Name']; x.pPrice=products['Price']; x.pDescription=products['Description']; x.pImageURl=products['Image URL'];
+
 
                     return Container(
 
@@ -133,6 +152,7 @@ CircleAvatar(radius: 50,
                   }).toList()
 
               );
+
 
 
             }

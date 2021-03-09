@@ -53,7 +53,7 @@ class _EditProductState extends State<EditProduct> {
       await uploadTask;
       //Future.delayed(const Duration(milliseconds: 2000));
       _picturePath= await firebaseStorageRef.getDownloadURL();
-      print(_picturePath);
+      //print(_picturePath);
 
 
       /* firebaseStorageRef.getDownloadURL().then((fileUrl) {
@@ -66,7 +66,16 @@ print('done'+_picturePath);
 
     }
 
+    /*Future checkdescrption() async
+      {
+        if (_description?.isEmpty??true )
+        {
+          _description=await p.pDescription;
+          print ('this is '+_description);
+        }
 
+
+      }*/
 
 
 
@@ -93,8 +102,8 @@ print('done'+_picturePath);
 
                         width: 180.0,
                         height: 180.0,
-                        child:Image.network(p.pImageURl,
-                        fit:BoxFit.fill),
+                          child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Image.network(p.pImageURl,fit: BoxFit.fill,),
+
 
                       )
 
@@ -111,20 +120,22 @@ print('done'+_picturePath);
 
 
 
-              }, hint: p.pName),
+              }, hint: 'Product Name'),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
                 _price=double.parse(value);
 
 
 
-              }, hint: p.pPrice.toString()),
+              }, hint: 'Product Price'),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
                 _description=value;
 
-              }, hint: p.pDescription),
+              }, hint: 'Product Description'),
               SizedBox(height:10),
+
+
 
               ButtonTheme(
                 minWidth: 80.0,
@@ -134,44 +145,30 @@ print('done'+_picturePath);
 
                       onPressed: () async{if (_globalKey.currentState.validate())
                         try {
+                        //await checkdescrption();
+                        await uploadPic(context);
 
-                         await uploadPic(context);
-                         if(_picturePath==null)
-                           {
-                             _picturePath=p.pImageURl;
-                           }
-
-                         if (_name==null )
-                           {
-                             _name=p.pName;
-                           }
-                         if (_price==null)
-                           {
-                             _price=p.pPrice;
-                           }
-                         if (_description==null)
-                           {
-                             _description=p.pDescription;
-
-                           }
-                          //Future.delayed(const Duration(milliseconds: 4000));
+                        print(_description);
+              //Future.delayed(const Duration(milliseconds: 4000));
 
                         _globalKey.currentState.save();
+
                          //uploadPic(context);
 
+                           _Products.updateProduct(
 
-                         _Products.updateProduct(
+                               ({
+                                 kProductName: _name,
+                                 kProductPrice: _price,
+                                 kProductDescription: _description,
+                                 kProductImageUrl: _picturePath
+                               }), p.pID);
 
-      ({
-        kProductName: _name,
-        kProductPrice: _price,
-        kProductDescription: _description,
-        kProductImageUrl: _picturePath
-      }), p.pID);
   //print('after for loop '+_picturePath);
 }
 catch (e){
-  Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
+                        print (e.toString());
+  Scaffold.of(context).showSnackBar(SnackBar(content:Text(e.toString()
   ),
   ));
 

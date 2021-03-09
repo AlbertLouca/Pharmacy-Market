@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:pharmacynew/models/Product.dart';
+import 'package:pharmacynew/models/Users.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 import '../constants.dart';
 
@@ -29,16 +31,20 @@ class Auth with ChangeNotifier {
     return null;
   }
 
-  String get userId {
+   String get userId {
     return _userId;
   }
 
   bool get isAuth {
     return token != null;
   }
+  users u = new users();
 
   Future<void> _authenticate(String email, String password, String action,
       {UserModel user}) async {
+
+
+
     try {
       final url =
           'https://identitytoolkit.googleapis.com/v1/accounts:$action?key=AIzaSyBsgZ9Sq-9fxZT8vMSihE31oKfDzNVzsk0';
@@ -88,6 +94,7 @@ class Auth with ChangeNotifier {
               "conpassword": user.confirm,
               "Address": user.address
             }));
+
       } else {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
@@ -103,20 +110,19 @@ class Auth with ChangeNotifier {
               "Address": user.address
             },
           ),
-        );/*
-        addData(){
-Map<String,dynamic> userdata={//copy ur json
-  "Id": _userId,
-              "name": user.fname,
-              "email": user.mail,
-              "mobile": user.phone,
-              "password": user.passWord,
-              "conpassword": user.confirm
-};
- FirebaseFirestore.instance.collection(KUserCollection).add(userdata);
+        );
 
-}
-*/
+        u.addUser(UserModel(
+
+          name: user.fname,
+          email: user.mail,
+          password: user.passWord,
+          conpassword: user.confirm,
+          mobile:user.phone,
+          address: user.address,
+
+        ),_userId);
+
       }
      
       notifyListeners();
@@ -124,7 +130,6 @@ Map<String,dynamic> userdata={//copy ur json
       throw error;
     }
   }
-
 
 
   Future<void> signup(UserModel user, String password) async {

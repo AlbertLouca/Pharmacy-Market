@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:pharmacynew/models/Users.dart';
 import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
 import 'package:pharmacynew/services/auth.dart';
@@ -9,6 +10,8 @@ import 'package:provider/provider.dart';
 import '../constants.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
+
+//import 'package:firebase_database/firebase_database.dart';
 
 class SignupScreen extends StatefulWidget {
   static String id='SignupScreen';
@@ -35,6 +38,7 @@ class SignupScreen extends StatefulWidget {
 }*/
 
 class _SignupScreenState extends State<SignupScreen> {
+  Auth a = new Auth();
   final _passwordFieldKey = GlobalKey<FormFieldState<String>>();
   final _formKey = GlobalKey<FormState>();
   final RegExp emailRegex = new RegExp(
@@ -49,8 +53,12 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController _address = TextEditingController();
 
   final myController = TextEditingController();
+  users U=new users();
+  Auth b = new Auth();
+  //final FirebaseDatabase database = FirebaseDatabase.getInstance();
+  //DatabaseReference ref = database.getReference("server/saving-data/fireblog/posts");
 
-void _showErrorDialog(String message) {
+  void _showErrorDialog(String message) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
@@ -247,8 +255,12 @@ void _showErrorDialog(String message) {
                                             ),
                                             _password.text);
                                             if (_formKey.currentState.validate()) {
+                                             // String key = mDatabase.child("posts").push().getKey();
+
+
+
                                              _showSignupDialog('Welcome, Redirecting in 5');
-                                  //auth.addData();
+
                                   Timer(Duration(seconds: 5) ,(){    Navigator.push(
                       context,
                       MaterialPageRoute(

@@ -16,12 +16,16 @@ import 'models/Cart.dart';
 import 'screens/admin/add_Product.dart';
 import 'screens/user/products_screen.dart';
 void main ()async {
+
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(ChangeNotifierProvider(
     create: (context) => Auth(),
     child: MyApp(),
   ));
+
+
 
 }
 

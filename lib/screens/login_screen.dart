@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/screens/admin/add_Product.dart';
+import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'package:provider/provider.dart';
 import '../constants.dart';
@@ -132,7 +133,7 @@ void _showErrorDialog(String message) {
                                       context,
                                       MaterialPageRoute 
                                        (
-                                        builder: (context) => AddProduct(),
+                                        builder: (context) => CategoryScreen(),
                                        ),
                                      );
                                         });
