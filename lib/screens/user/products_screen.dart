@@ -7,6 +7,7 @@ import 'package:pharmacynew/old/NavBar.dart';
 import '../../constants.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+
 class ProductsScreen extends StatefulWidget {
   static String id='ProductScreen';
 

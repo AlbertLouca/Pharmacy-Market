@@ -8,4 +8,4 @@ const kProductDescription='Description';
 const KAppBarColor=Colors.deepPurple;
 const KbuttonColor= Colors.white;
 const kProductImageUrl='Image URl';
-
+const KUserCollection="user";
