@@ -11,14 +11,14 @@ import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:path/path.dart';
 final _product=Product();
-class AddProduct extends StatefulWidget {
-  static String id='AddProduct';
+class EditProduct extends StatefulWidget {
+  static String id='EditProduct';
 
   @override
-  _AddProductState createState() => _AddProductState();
+  _EditProductState createState() => _EditProductState();
 }
 
-class _AddProductState extends State<AddProduct> {
+class _EditProductState extends State<EditProduct> {
 
   String _name,_description;
 
@@ -35,6 +35,7 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
+    Product p  = ModalRoute.of(context).settings.arguments;
     Future getImage() async {
       var image = await ImagePicker.pickImage(source:ImageSource.gallery);
       setState(() {
@@ -92,7 +93,8 @@ print('done'+_picturePath);
 
                         width: 180.0,
                         height: 180.0,
-                        child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Text('Upload an image'),
+                        child:Image.network(p.pImageURl,
+                        fit:BoxFit.fill),
 
                       )
 
@@ -108,55 +110,73 @@ print('done'+_picturePath);
                 _name=value;
 
 
-              }, hint: 'Product Name'),
+
+              }, hint: p.pName),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
                 _price=double.parse(value);
 
 
 
-              }, hint: 'Product Price'),
+              }, hint: p.pPrice.toString()),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
                 _description=value;
 
-              }, hint: 'Product Description'),
+              }, hint: p.pDescription),
               SizedBox(height:10),
 
               ButtonTheme(
                 minWidth: 80.0,
                 height: 60.0,
                 child: Builder(
-                  builder: (context)=>RaisedButton.icon(
+                  builder: (context)=> RaisedButton.icon(
 
                       onPressed: () async{if (_globalKey.currentState.validate())
                         try {
-                          await uploadPic(context);
-                          if(_picturePath == null)
-                            {
-                              _picturePath="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png";
 
-                            }
+                         await uploadPic(context);
+                         if(_picturePath==null)
+                           {
+                             _picturePath=p.pImageURl;
+                           }
+
+                         if (_name==null )
+                           {
+                             _name=p.pName;
+                           }
+                         if (_price==null)
+                           {
+                             _price=p.pPrice;
+                           }
+                         if (_description==null)
+                           {
+                             _description=p.pDescription;
+
+                           }
                           //Future.delayed(const Duration(milliseconds: 4000));
 
-                          _globalKey.currentState.save();
-                          //uploadPic(context);
+                        _globalKey.currentState.save();
+                         //uploadPic(context);
 
 
-                          _Products.addProduct(Product(
-                              pName: _name,
-                              pPrice: _price,
-                              pDescription: _description,
-                              pImageURl: _picturePath
-                          ));
-                          //print('after for loop '+_picturePath);
-                        }
-                        catch (e){
-                        Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
-                        ),
-                        ));
+                         _Products.updateProduct(
 
-                        }
+      ({
+        kProductName: _name,
+        kProductPrice: _price,
+        kProductDescription: _description,
+        kProductImageUrl: _picturePath
+      }), p.pID);
+  //print('after for loop '+_picturePath);
+}
+catch (e){
+  Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
+  ),
+  ));
+
+
+}
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0))),

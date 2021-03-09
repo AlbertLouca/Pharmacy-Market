@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/constants.dart';
+import 'package:pharmacynew/screens/admin/add_Product.dart';
+import 'package:pharmacynew/screens/user/products_screen.dart';
 import 'Profile.dart';
 import 'Settings.dart';
 
@@ -52,13 +54,20 @@ class _NavBarState extends State<NavBar> {
             break;
           case 1:
             {
-              setState(() {});
+              setState(() {
+
+                  Navigator.pushNamed(context,ProductsScreen.id,);
+
+
+              });
 
             }
             break;
           case 2:
             {
               setState(() {
+
+                  Navigator.pushNamed(context,AddProduct.id,);
 
               });
             }

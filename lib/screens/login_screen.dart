@@ -355,7 +355,7 @@ void _showErrorDialog(String message) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Category(),
+                        builder: (context) => CategoryScreen(),
                       ),
                     );
                   }

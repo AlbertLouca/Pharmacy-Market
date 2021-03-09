@@ -6,8 +6,8 @@ import 'package:firebase_core/firebase_core.dart';
 
 final  _firestore= FirebaseFirestore.instance;
 
-class Products with ChangeNotifier{
-
+class Products {
+  List <Product> products = [];
 
  void addProduct(Product p) {
 //print (this.pName);
@@ -25,6 +25,24 @@ class Products with ChangeNotifier{
   }
 
 
+
+  updateProduct(data,documentID)async{
+
+   _firestore.collection(kProductsCollection).doc(documentID).update(data);
+    //CollectionReference  collectionReference =FirebaseFirestore.instance.collection(kProductsCollection).where(kProductName, isEqualTo: name);
+   // QuerySnapshot querySnapshot =await collectionReference.get();
+    //querySnapshot.docs[0].reference.update({kProductImageUrl:Url});
+
+
+
+  }
+
+  deleteProduct(documentId)
+  {
+    _firestore.collection(kProductsCollection).doc(documentId).delete();
+
+
+  }
 
 
    }
