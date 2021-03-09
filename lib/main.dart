@@ -7,16 +7,21 @@ import 'package:pharmacynew/screens/admin/manage_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pharmacynew/screens/user/Cart_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:pharmacynew/screens/Signup_screen.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
+import 'package:pharmacynew/services/auth.dart';
 import 'models/Cart.dart';
 import 'screens/admin/add_Product.dart';
 import 'screens/user/products_screen.dart';
 void main ()async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => Auth(),
+    child: MyApp(),
+  ));
 
 }
 
@@ -31,10 +36,11 @@ class MyApp extends StatelessWidget{
     },
     child: MaterialApp(
 
-      initialRoute: ProductsScreen.id,
+      initialRoute: SignupScreen.id,
       routes: {
         Cart_screen.id:(context)=>Cart_screen(),
         CategoryScreen.id:(context)=>CategoryScreen(),
+        SignupScreen.id:(context)=>SignupScreen(),
         LoginScreen.id:(context)=>LoginScreen(),
         AdminScreen.id:(context)=>AdminScreen(),
         Manage_screen.id:(context)=>Manage_screen(),
