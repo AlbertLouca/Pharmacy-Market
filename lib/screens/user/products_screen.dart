@@ -78,6 +78,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                         child: Consumer<Cart>(builder: (context,cart,child){
 
                           return Wrap (
+
                             children: [
                               CircleAvatar(radius: 50,
                                 child:ClipOval(
@@ -97,7 +98,8 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
 
                               new Chip (
-                                label:  Text( x.pName, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+
+                                label:  Text( spacing(x.pName), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
                               ),
 
@@ -158,4 +160,17 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
 
   }
+}
+String spacing(String x){
+ String y='';
+  if(x.length>10){
+    y= x.substring(0,9);
+    y=y+"...";
+    return y;
+  }
+  else {
+    return x;
+  }
+
+
 }
