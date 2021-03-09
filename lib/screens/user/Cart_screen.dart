@@ -65,9 +65,9 @@ class _Cart_screenState extends State<Cart_screen> {
         actions: [
 
           Padding(
-              padding: const EdgeInsets.only(right: 40),
+              padding: const EdgeInsets.only(right: 40 ,top: 30),
               child: Consumer<Cart>(builder:(context,cart,child){
-                return Text('Total: ${cart.get_price()}',style: TextStyle(color: Colors.green),);
+                return Text('Total: ${cart.get_price()} EGP',style: TextStyle(color: Colors.green,fontSize: 15),);
               })
 
           )
