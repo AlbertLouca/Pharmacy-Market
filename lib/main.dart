@@ -16,7 +16,7 @@ import 'package:pharmacynew/screens/user/location_maps.dart';
 import 'package:pharmacynew/screens/user/notification_test.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'models/Cart.dart';
-import 'old/Profile.dart';
+import 'screens/user/Profile.dart';
 import 'screens/admin/add_Product.dart';
 import 'screens/user/products_screen.dart';
 void main ()async {

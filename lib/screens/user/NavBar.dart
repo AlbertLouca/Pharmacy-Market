@@ -4,7 +4,7 @@ import 'package:pharmacynew/screens/admin/add_Product.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import 'Profile.dart';
-import 'Settings.dart';
+import '../../old/Settings.dart';
 
 
 class NavBar extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharmacynew/old/NavBar.dart';
+import 'file:///D:/University/Pharmacy-Market/lib/screens/user/NavBar.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import '../../constants.dart';
 import '../Signup_screen.dart';

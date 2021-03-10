@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
-import 'NavBar.dart';
+import '../screens/user/NavBar.dart';
 import 'old/Cart.dart';
 
 class Items extends StatelessWidget {

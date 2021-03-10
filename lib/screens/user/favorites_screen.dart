@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Product.dart';
-import 'package:pharmacynew/old/NavBar.dart';
+import 'file:///D:/University/Pharmacy-Market/lib/screens/user/NavBar.dart';
 import 'package:provider/provider.dart';
 import 'products_screen.dart';
 import '../../constants.dart';
