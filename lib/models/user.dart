@@ -11,6 +11,7 @@ class UserModel {
   String conpassword;
   String mobile;
   String address;
+
   List <Product> favorites=[];
   UserModel({
     token,
