@@ -1,25 +1,22 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:http/http.dart' as http;
-import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Users.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-import '../constants.dart';
 
 
 class Auth with ChangeNotifier {
   savePref (String id,String name, String phone,String mail,String address) async{
 
 SharedPreferences preferences = await SharedPreferences.getInstance();
+
 preferences.setString("id", id);
 preferences.setString("name", name);
 preferences.setString("phone", phone);
@@ -79,11 +76,6 @@ preferences.setString("address", address);
           seconds: int.parse(
         responseData['expiresIn'],
       )));
-      print('User ID: $_userId');
-      await FlutterSession().set("id", _userId);
-      print('Token: $_token');
-      print('_expiryDate: $_expiryDate');
-///////////////////////////////////////////////////////////////////////////////////
       if (action == "signInWithPassword") {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
@@ -97,6 +89,10 @@ preferences.setString("address", address);
         user = UserModel(
             password: responseData['password'], email: responseData['email']);
         print(responseData);
+        print('user id '+_userId);
+
+        savePref(_userId, responseData['name'], responseData['mobile'], responseData['email'], responseData['Address']);
+
         final prefs = await SharedPreferences.getInstance();
         prefs.setString(
             'user_data',
@@ -126,10 +122,7 @@ preferences.setString("address", address);
             },
           ),
         );
-         //FlutterSession().set("fname", user.fname);
-         //FlutterSession().set("mail", user.mail);
-         //FlutterSession().set("phone", user.phone);
-         //FlutterSession().set("address", user.address);
+
         u.addUser(UserModel(
 
           name: user.fname,
@@ -140,7 +133,6 @@ preferences.setString("address", address);
           address: user.address,
 
         ),_userId);
-        savePref(_userId, user.fname, user.phone, user.mail, user.address);
 
       }
      
@@ -168,16 +160,17 @@ preferences.setString("address", address);
     }
     final savedUserData =
         json.decode(prefs.getString('user_data')) as Map<String, dynamic>;
-
-    print("//Auto Login $savedUserData");
     try {
       user = UserModel(
         id: savedUserData['Id'],
         email: savedUserData['email'],
         name: savedUserData['Fullname'],
         mobile: savedUserData['mobile'],
+        address: savedUserData['address'],
+
       );
       notifyListeners();
+     
     } on Exception catch (e) {
       print(e.toString());
     }
@@ -187,6 +180,7 @@ preferences.setString("address", address);
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('user_data', null);
+    savePref(null, null, null, null, null);
 
     _token = null;
     _expiryDate = null;

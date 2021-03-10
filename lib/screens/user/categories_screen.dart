@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:pharmacynew/old/NavBar.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import '../../constants.dart';
 import '../Signup_screen.dart';
 
-Future<String> getsession (String x) async{
-  var fname = await FlutterSession().get(x);
-  return fname;
-
-}
 
 class CategoryScreen extends StatelessWidget {
   static String id='CategoriesScreen';
