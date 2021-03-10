@@ -1,4 +1,6 @@
 import 'package:pharmacynew/screens/admin/EditProduct.dart';
+import 'package:pharmacynew/screens/admin/Order_Details.dart';
+import 'package:pharmacynew/screens/admin/OrdersScreen.dart';
 import 'package:pharmacynew/screens/admin/View_Product.dart';
 import 'package:pharmacynew/screens/admin/add_Product.dart';
 import 'package:pharmacynew/screens/admin_screen.dart';
@@ -47,7 +49,11 @@ class MyApp extends StatelessWidget{
         debugShowCheckedModeBanner: false,
 
 
+<<<<<<< Updated upstream
       initialRoute: MyMaps.id,
+=======
+      initialRoute: OrdersScreen.id,
+>>>>>>> Stashed changes
 
      // initialRoute: SignupScreen.id,
 
@@ -56,7 +62,12 @@ class MyApp extends StatelessWidget{
 
 
       routes: {
+<<<<<<< Updated upstream
         Profile.id:(context)=>Profile(),
+=======
+        OrdersScreen.id:(context)=>OrdersScreen(),
+        OrdersDetails.id:(context)=>OrdersDetails(),
+>>>>>>> Stashed changes
         favorites_screen.id:(context)=>favorites_screen(),
         Cart_screen.id:(context)=>Cart_screen(),
         CategoryScreen.id:(context)=>CategoryScreen(),
