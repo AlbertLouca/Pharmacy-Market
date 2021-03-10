@@ -1,13 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:pharmacynew/models/http_exception.dart';
-import 'package:pharmacynew/screens/admin/add_Product.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'package:provider/provider.dart';
-import '../constants.dart';
-import 'package:pharmacynew/models/user.dart';
-import 'package:pharmacynew/screens/admin/add_Product.dart';
 import 'package:pharmacynew/screens/Signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -75,7 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   'Login!',
                   style: TextStyle(
                       color: Colors.blue[300],
-                      //fontWeight: FontWeight.w500,
                       fontSize: 40),
                 )),
 
@@ -124,8 +118,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
             RaisedButton(
               onPressed: () async {
-                // print(_email.text+'nn');
-                //print(_password.text+'jjk');
                 if (_formKey.currentState.validate()) {
                   try {
                     await Provider.of<Auth>(context,
@@ -134,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _password.text);
                     if (_formKey.currentState.validate()) {
                       _showLoginDialog('Welcome, Redirecting in 5');
-                      Timer(Duration(seconds: 5), () {
+                      Timer(Duration(seconds: 4), () {
                         Navigator.push
                           (
                           context,

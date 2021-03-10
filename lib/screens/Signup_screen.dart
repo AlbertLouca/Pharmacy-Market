@@ -24,7 +24,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final RegExp emailRegex = new RegExp(
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
-  //var _isLoading = false;
   TextEditingController _name = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
@@ -210,7 +209,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
                           _showSignupDialog('Welcome, Redirecting in 5');
 
-                          Timer(Duration(seconds: 5), () {
+                          Timer(Duration(seconds: 4), () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(

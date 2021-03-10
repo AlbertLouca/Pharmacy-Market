@@ -1,19 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_session/flutter_session.dart';
 import 'package:http/http.dart' as http;
-import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Users.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
-import '../constants.dart';
 
 
 class Auth with ChangeNotifier {
@@ -34,7 +30,6 @@ preferences.setString("address", address);
   DateTime _expiryDate;
   String _userId;
   UserModel user;
-  //String ID;
 
   Timer _authTimer;
 
@@ -77,16 +72,10 @@ preferences.setString("address", address);
       }
       _token = responseData['idToken'];
       _userId = responseData['localId'];
-      //ID=_userId;
       _expiryDate = DateTime.now().add(Duration(
           seconds: int.parse(
         responseData['expiresIn'],
       )));
-      print('User ID: $_userId');
-      await FlutterSession().set("id", _userId);
-      print('Token: $_token');
-      print('_expiryDate: $_expiryDate');
-///////////////////////////////////////////////////////////////////////////////////
       if (action == "signInWithPassword") {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
@@ -101,8 +90,7 @@ preferences.setString("address", address);
             password: responseData['password'], email: responseData['email']);
         print(responseData);
         print('user id '+_userId);
-       // print ('ID'+ID);
-       // print('local id '+responseData['localId']);
+
         savePref(_userId, responseData['name'], responseData['mobile'], responseData['email'], responseData['Address']);
 
         final prefs = await SharedPreferences.getInstance();
@@ -117,7 +105,7 @@ preferences.setString("address", address);
               "conpassword": user.confirm,
               "Address": user.address
             }));
-//hello here
+
       } else {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
@@ -134,10 +122,7 @@ preferences.setString("address", address);
             },
           ),
         );
-         //FlutterSession().set("fname", user.fname);
-         //FlutterSession().set("mail", user.mail);
-         //FlutterSession().set("phone", user.phone);
-         //FlutterSession().set("address", user.address);
+
         u.addUser(UserModel(
 
           name: user.fname,
@@ -175,9 +160,6 @@ preferences.setString("address", address);
     }
     final savedUserData =
         json.decode(prefs.getString('user_data')) as Map<String, dynamic>;
-    //print(savedUserData);
-//print ('wslt le hena 177');
-   // print("//Auto Login $savedUserData");
     try {
       user = UserModel(
         id: savedUserData['Id'],
@@ -188,10 +170,7 @@ preferences.setString("address", address);
 
       );
       notifyListeners();
-     // savePref(null, null, null, null, null);
-
-      //savePref(savedUserData['id'], savedUserData['Fullname'], savedUserData['mobile'], savedUserData['email'], savedUserData['address']);
-
+     
     } on Exception catch (e) {
       print(e.toString());
     }
