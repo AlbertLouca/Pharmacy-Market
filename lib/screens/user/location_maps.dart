@@ -56,7 +56,7 @@ class _MyMapsState extends State<MyMaps> {
   }
   void googleMaps() async {
     String googleUrl =
-        "https://www.google.com/maps/search/?api=1&query=30.044315764165642,31.47589924546376";
+        "https://www.google.com/maps/search/?api=1&query=30.042463362747487,31.475227853912763";
 
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);
