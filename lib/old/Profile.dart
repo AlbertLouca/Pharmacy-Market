@@ -9,34 +9,55 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
    var ID,Name,Phone,mail,address,
        Fname,Fmail,FPhone,Faddress;
+   getID()async{
+     SharedPreferences preferences = await SharedPreferences.getInstance();
+ ID=preferences.getString("id");
+ //print (ID);
+
+   }
   getName()async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
      //ID = preferences.getString('id');
-     return Name = preferences.getString("name");
-     mail = preferences.getString("mail");
-     address = preferences.getString("address");
+      Name = preferences.getString("name");
+    // print(Name);
+     return Name;
+    // mail = preferences.getString("mail");
+     //address = preferences.getString("address");
 
   }
   getPhone()async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-   return Phone = preferences.getString("phone");
+   Phone = preferences.getString("phone");
+   //print (Phone);
+   return Phone;
 
   }
   getMail()async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
-   return mail = preferences.getString("mail");
+
+  mail = preferences.getString("mail");
+   // print(mail);
+return mail;
 
   }
   getAddress()async{
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    return address = preferences.getString("address");
-
+    address = preferences.getString("address");
+print (address);
+return address;
 
   }
 
+
   @override
   void initState(){
+    getID().then((id){
+
+      setState(() {
+        ID= id;
+      });
+    });
 
 getName().then((name){
 

@@ -20,6 +20,7 @@ class Auth with ChangeNotifier {
   savePref (String id,String name, String phone,String mail,String address) async{
 
 SharedPreferences preferences = await SharedPreferences.getInstance();
+
 preferences.setString("id", id);
 preferences.setString("name", name);
 preferences.setString("phone", phone);
@@ -33,6 +34,7 @@ preferences.setString("address", address);
   DateTime _expiryDate;
   String _userId;
   UserModel user;
+  //String ID;
 
   Timer _authTimer;
 
@@ -75,6 +77,7 @@ preferences.setString("address", address);
       }
       _token = responseData['idToken'];
       _userId = responseData['localId'];
+      //ID=_userId;
       _expiryDate = DateTime.now().add(Duration(
           seconds: int.parse(
         responseData['expiresIn'],
@@ -97,6 +100,11 @@ preferences.setString("address", address);
         user = UserModel(
             password: responseData['password'], email: responseData['email']);
         print(responseData);
+        print('user id '+_userId);
+       // print ('ID'+ID);
+       // print('local id '+responseData['localId']);
+        savePref(_userId, responseData['name'], responseData['mobile'], responseData['email'], responseData['Address']);
+
         final prefs = await SharedPreferences.getInstance();
         prefs.setString(
             'user_data',
@@ -109,7 +117,7 @@ preferences.setString("address", address);
               "conpassword": user.confirm,
               "Address": user.address
             }));
-
+//hello here
       } else {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
@@ -140,7 +148,6 @@ preferences.setString("address", address);
           address: user.address,
 
         ),_userId);
-        savePref(_userId, user.fname, user.phone, user.mail, user.address);
 
       }
      
@@ -168,16 +175,23 @@ preferences.setString("address", address);
     }
     final savedUserData =
         json.decode(prefs.getString('user_data')) as Map<String, dynamic>;
-
-    print("//Auto Login $savedUserData");
+    //print(savedUserData);
+//print ('wslt le hena 177');
+   // print("//Auto Login $savedUserData");
     try {
       user = UserModel(
         id: savedUserData['Id'],
         email: savedUserData['email'],
         name: savedUserData['Fullname'],
         mobile: savedUserData['mobile'],
+        address: savedUserData['address'],
+
       );
       notifyListeners();
+     // savePref(null, null, null, null, null);
+
+      //savePref(savedUserData['id'], savedUserData['Fullname'], savedUserData['mobile'], savedUserData['email'], savedUserData['address']);
+
     } on Exception catch (e) {
       print(e.toString());
     }
@@ -187,6 +201,7 @@ preferences.setString("address", address);
   Future<void> logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('user_data', null);
+    savePref(null, null, null, null, null);
 
     _token = null;
     _expiryDate = null;
