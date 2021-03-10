@@ -112,9 +112,21 @@ getAddress().then((address){
         body: SafeArea(
           child: Center(
             child: Column(
+
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                CircleAvatar(radius: 200,
+                    backgroundColor: Colors.white,
+                    child:SizedBox(
 
+                      width: 300.0,
+                      height: 150.0,
+                      child :Image.network('https://cdn.vox-cdn.com/thumbor/t6_GxiVcx3NNcFHL_q3bwt_weaU=/0x0:720x360/920x0/filters:focal(0x0:720x360):format(webp):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/13250843/breakdancing_together.jpg',
+                          fit:BoxFit.fill),
+
+                    )
+
+                ),
                 Text(
                   Fname,
                   style: TextStyle(
@@ -126,7 +138,7 @@ getAddress().then((address){
                   Fmail,
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.blue[300],
+                    color:KAppBarColor,
                     letterSpacing: 2.5,
                   ),
                 ),
