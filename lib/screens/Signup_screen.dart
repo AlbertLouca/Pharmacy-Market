@@ -59,7 +59,7 @@ class _SignupScreenState extends State<SignupScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Registeration Succesfull'),
+        title: Text('Registeration successful'),
         content: Text(message),
       ),
     );

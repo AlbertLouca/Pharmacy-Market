@@ -153,12 +153,6 @@ print('done'+_picturePath);
                               pImageURl: _picturePath
                           ));
                           //print('after for loop '+_picturePath);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AddProduct(),
-                              )
-                           );
                         }
                         catch (e){
                         print (e.toString());
