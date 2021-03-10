@@ -13,8 +13,7 @@ import '../../constants.dart';
 
 class ProductsScreen extends StatefulWidget {
   static String id='ProductScreen';
-   final String title;
-ProductsScreen([this.title]);
+
 
   final  Firestore= FirebaseFirestore.instance;
   @override
@@ -29,12 +28,13 @@ class _ProductsscreenState extends State<ProductsScreen> {
   Products items;
 
   Widget build(BuildContext context) {
+   String title= ModalRoute.of(context).settings.arguments;
     return Scaffold(
 
         bottomNavigationBar:NavBar(1),
         appBar: AppBar(
           backgroundColor: KAppBarColor,
-          title:Text('Products ${widget.title} '),
+          title:Text('$title Products '),
           actions: [
             IconButton(
               icon: Icon(Icons.shopping_bag_rounded),
@@ -68,8 +68,13 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
               return ListView(
                   children: snapshot.data.docs.map((products){
-                    Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl']);
+                    Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl'],pCategory: products['Category']);
 
+
+                    if(x.pCategory!= title){
+                      
+                      return Text('');
+                    }
                    // items.products.add(x);
 
                     return Container(

@@ -44,7 +44,11 @@ class MyApp extends StatelessWidget{
 
     child: MaterialApp(
 
+
       initialRoute: CategoryScreen.id,
+
+     // initialRoute: SignupScreen.id,
+
       routes: {
         favorites_screen.id:(context)=>favorites_screen(),
         Cart_screen.id:(context)=>Cart_screen(),
