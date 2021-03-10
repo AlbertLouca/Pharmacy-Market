@@ -43,6 +43,7 @@ class MyApp extends StatelessWidget{
     },
 
     child: MaterialApp(
+        debugShowCheckedModeBanner: false,
 
       initialRoute: SignupScreen.id,
       routes: {

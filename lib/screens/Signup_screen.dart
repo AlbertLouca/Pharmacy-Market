@@ -268,7 +268,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   );
 
                 },
-                    child: Text('Already Have an Account?'),
+                    child: Text('Already Have an Account? Sign In here!'),
                 )
               ],
             ),
