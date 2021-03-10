@@ -22,7 +22,8 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsscreenState extends State<ProductsScreen> {
-
+String title;
+_ProductsscreenState({this.title});
   Cart cart;
   Products items;
   Widget build(BuildContext context) {

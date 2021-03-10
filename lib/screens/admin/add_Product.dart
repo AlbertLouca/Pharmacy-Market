@@ -20,9 +20,10 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
 
-  String _name,_description;
+  String _name,_description,_category;
 
   double _price;
+
   String _picturePath;
   int randomNumber = Random().nextInt(100000);
   String ID = Random().nextInt(100000).toString();
@@ -111,6 +112,13 @@ print('done'+_picturePath);
               }, hint: 'Product Name'),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
+                _category=value;
+
+
+
+              }, hint: 'Product Category'),
+              SizedBox(height:10),
+              GenericTextFeild(onClick: (value){
                 _price=double.parse(value);
 
 
@@ -140,6 +148,7 @@ print('done'+_picturePath);
 
 
                           _Products.addProduct(Product(
+                            pCategory: _category,
                               pName: _name,
                               pPrice: _price,
                               pDescription: _description,
