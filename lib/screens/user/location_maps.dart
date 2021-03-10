@@ -23,6 +23,9 @@ class _MyMapsState extends State<MyMaps> {
   var locationMessage = '';
   String latitude;
   String longitude;
+  String lat2;
+  String long2;
+
   bool loc = false;
 
   void getCurrentLocation() async {
@@ -34,6 +37,9 @@ class _MyMapsState extends State<MyMaps> {
     latitude = "$lat";
     longitude = "$long";
 
+    long2="31.47589924546376";
+    lat2="30.044315764165642";
+
     setState(() {
       locationMessage = "Latitude: $lat and Longitude: $long";
     });
@@ -42,6 +48,15 @@ class _MyMapsState extends State<MyMaps> {
   void googleMap() async {
     String googleUrl =
         "https://www.google.com/maps/search/?api=1&query=$latitude,$longitude";
+
+    if (await canLaunch(googleUrl)) {
+      await launch(googleUrl);
+    } else
+      throw ("Couldn't open google maps");
+  }
+  void googleMaps() async {
+    String googleUrl =
+        "https://www.google.com/maps/search/?api=1&query=30.044315764165642,31.47589924546376";
 
     if (await canLaunch(googleUrl)) {
       await launch(googleUrl);
@@ -120,7 +135,14 @@ class _MyMapsState extends State<MyMaps> {
                     ).show();
                   }
                 },
-                child: Text("Open GoogleMap"),
+                child: Text("Open GoogleMap To User Location"),
+              ),
+               ElevatedButton(
+                onPressed: () {
+                  googleMaps();
+                  
+                },
+                child: Text("Open GoogleMap To The Pharmacy Location"),
               ),
             ],
           ),
