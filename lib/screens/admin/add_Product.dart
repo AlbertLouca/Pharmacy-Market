@@ -24,7 +24,7 @@ class _AddProductState extends State<AddProduct> {
 
   String _picturePath;
   int randomNumber = Random().nextInt(100000);
-  String ID = Random().nextInt(100000).toString();
+  //String ID = Random().nextInt(100000).toString();
 
   final _Products =Products();
 
