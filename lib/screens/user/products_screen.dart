@@ -69,9 +69,9 @@ class _ProductsscreenState extends State<ProductsScreen> {
 
               return ListView(
                   children: snapshot.data.docs.map((products){
-                    Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl'],pCategory: products['Category']);
+                    Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl'],pCategory: products['Category'],pQuantity: products['Quantity']);
 
-
+                    print(x.pQuantity);
                     if(x.pCategory!= title){
                       
                       return Text('');

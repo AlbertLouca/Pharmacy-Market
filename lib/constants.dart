@@ -20,7 +20,7 @@ const KOrdersCollection='Orders';
 const KOrderDetais='Details';
 const KProductQuantity='Quantity';
 const KTotalPrice='Total price';
-
+const kProductQuantity='Quantity';
 const  KUserType = 'Admin';
 
 const KOrderName='OrderName';

@@ -45,7 +45,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(child: Center(child: Text('Hello'+Fname))),
+            DrawerHeader(child: Center(child: Text('Hello '+Fname))),
             Container(
               constraints: BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
               margin: EdgeInsets.all(10),

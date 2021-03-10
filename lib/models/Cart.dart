@@ -16,11 +16,12 @@ void AddtoCart(Product item){
 
   if(Products.contains(item)){
     Products[Products.indexOf(item)].increasequantity();
-
+    print('test : '+Products[Products.indexOf(item)].pQuantity.toString() );
   }
   else{
-    Products.add(item);
 
+    Products.add(item);
+print(item.pQuantity);
   }
 
 

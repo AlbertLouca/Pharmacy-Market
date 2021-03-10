@@ -19,8 +19,8 @@ class Products  with ChangeNotifier{
           kProductPrice: p.pPrice,
           kProductDescription: p.pDescription,
           kProductImageUrl :p.pImageURl,
-          kProductCategory:p.pCategory
-
+          kProductCategory:p.pCategory,
+          kProductQuantity:p.pQuantity,
         });
     //notifyListeners();
   }

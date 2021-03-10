@@ -18,8 +18,9 @@ Product({this.pName,this.pPrice,this.pDescription,this.pImageURl,this.pCategory,
 
 void increasequantity(){
 
+print(pQuantity);
   pQuantity+=1;
-
+  notifyListeners();
 
 }
   void toggleFavoriteStatus(){

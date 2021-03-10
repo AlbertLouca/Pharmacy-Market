@@ -151,16 +151,21 @@ print('done'+_picturePath);
                               pPrice: _price,
                               pDescription: _description,
                               pImageURl: _picturePath
+                              , pQuantity: 1,
                           ));
                           //print('after for loop '+_picturePath);
+                          Navigator.pop(context)
+                          ;
                         }
                         catch (e){
                         print (e.toString());
+
                         Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
                         ),
                         ));
 
                         }
+
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0))),
