@@ -89,7 +89,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                           return Wrap (
 
                             children: [
-                              Align(child:
+                              Center(child:
                               CircleAvatar(radius: 50,
                                 child:ClipOval(
 
@@ -108,32 +108,46 @@ class _ProductsscreenState extends State<ProductsScreen> {
                               ),
 
 
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  children: [
 
-                            Text( spacing(x.pName) +'\n \n ', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-
-
-
-                              Text( '     \n'+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-
+    Text( spacing(x.pName) +' ', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
 
 
-                            IconButton(
-                                onPressed: (){
 
 
-                                  cart.AddtoCart(x);
+Row(
 
-                                },
+  children: [
+    Text( "   "+x.pPrice.toString()+ ' EGP',textAlign: TextAlign.center, style: TextStyle( color:Colors.green,fontWeight: FontWeight.bold , )),
 
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Colors.blue,
+    IconButton(
+      onPressed: (){
 
-                                ),padding: const EdgeInsets.only(right:10),
 
-                                color: Colors.red[500],
-                              ),
+        cart.AddtoCart(x);
+
+      },
+
+      icon: Icon(
+        Icons.add,
+        color: Colors.blue,
+
+      ),padding: const EdgeInsets.only(right:10),
+
+      color: Colors.red[500],
+    ),
+  ],
+),
+
+
+
+  ],
+
+),
+
                             ],
                           );
                         }
@@ -160,8 +174,8 @@ class _ProductsscreenState extends State<ProductsScreen> {
 }
 String spacing(String x){
  String y='';
-  if(x.length>10){
-    y= x.substring(0,9);
+  if(x.length>15){
+    y= x.substring(0,12);
     y=y+"...";
     return y;
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../services/NavBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../constants.dart';
 class Profile extends StatefulWidget {
   @override
   static String id = 'ProfileScreen';
@@ -101,12 +102,13 @@ getAddress().then((address){
       home: Scaffold(
 
         appBar: AppBar(
+          backgroundColor: KAppBarColor,
           title: Text(
             "Profile",
             style: TextStyle(fontSize: 18.0),
           ),
         ),
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: Column(

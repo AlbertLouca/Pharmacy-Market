@@ -85,6 +85,7 @@ bool isSort2=false;
                         margin: EdgeInsets.all(25.0),
                         child: Wrap (
                           children: [
+                        Center(child:
 CircleAvatar(radius: 50,
                             child:ClipOval(
 
@@ -99,51 +100,63 @@ CircleAvatar(radius: 50,
 
                             ),
 
-),
+),),
 
 
                           /*  FlutterLogo(
                               size: 70.0,
                             ),*/
-                            new Chip (
-                              label:  Text( products['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+children: [
 
-                            ),
-                            // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-                            Text( '       \n \n '+"   "+products['Price'].toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-                            Text('  '),
-
-                            IconButton(
-                              onPressed: (){
-                                Navigator.pushNamed(context, EditProduct.id,arguments: x);
+  Text( products['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
 
-                              },
+  // Text( product['Name'], textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+Row(
+    children: [
 
-                              icon: Icon(
-                                Icons.edit,
-                                color: Colors.black,
+    IconButton(
 
-                              ),padding: const EdgeInsets.only(right:10),
+    onPressed: (){
+                    Navigator.pushNamed(context, EditProduct.id,arguments: x);
 
-                              color: Colors.red[500],
-                            ),
-                            Text('    '),
-                            IconButton(
-                              onPressed: (){
-                                _products.deleteProduct(x.pID);
-                                // cart.AddtoCart('test');
-                               // cart.Products.add(x);
-                              },
 
-                              icon: Icon(
-                                Icons.delete,
-                                color: Colors.blue,
+                    },
 
-                              ),padding: const EdgeInsets.only(right:10),
+                    icon: Icon(
 
-                              color: Colors.red[500],
-                            ),
+                    Icons.edit,
+                    color: Colors.black,
+
+                    ),padding: const EdgeInsets.only(right:10),
+
+                    color: Colors.red[500],
+                    ),
+                    Text('    '),
+                    IconButton(
+                    alignment: Alignment.centerRight ,
+                    onPressed: (){
+                    _products.deleteProduct(x.pID);
+                    // cart.AddtoCart('test');
+                    // cart.Products.add(x);
+                    },
+
+                    icon: Icon(
+                    Icons.delete,
+                    color: Colors.blue,
+
+                    ),padding: const EdgeInsets.only(right:10),
+
+                    color: Colors.red[500],
+                    )
+      ]
+
+),
+ ]
+),
+
                           ],
                         ));
 

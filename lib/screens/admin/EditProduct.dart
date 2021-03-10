@@ -80,126 +80,128 @@ print('done'+_picturePath);
 
 
     return Scaffold(
-        backgroundColor: kBackGroundColor,
+        backgroundColor: Colors.white,
 
         body :Form(
           key:_globalKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              SizedBox(height: 20.0,),
-
-
-
-
-
-              CircleAvatar(radius: 100,
-                  backgroundColor: kFillTextFeildColor,
-                  child:ClipOval(
-
-                      child:SizedBox(
-
-                        width: 180.0,
-                        height: 180.0,
-                          child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Image.network(p.pImageURl,fit: BoxFit.fill,),
-
-
-                      )
-
-                  )),
-
-              SizedBox(height:30),
-
-              RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.white,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
+          child: SingleChildScrollView
+            (
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+Text(' \n\n '),
+                SizedBox(height: 20.0,),
 
 
 
-              GenericTextFeild(onClick: (value){
-                _name=value;
+
+
+                CircleAvatar(radius: 100,
+                    backgroundColor: kFillTextFeildColor,
+                    child:ClipOval(
+
+                        child:SizedBox(
+
+                          width: 180.0,
+                          height: 180.0,
+                            child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Image.network(p.pImageURl,fit: BoxFit.fill,),
+
+
+                        )
+
+                    )),
+
+                SizedBox(height:30),
+
+                RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.white,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
 
 
 
-              }, hint: 'Product Name'),
-              SizedBox(height:10),
-              GenericTextFeild(onClick: (value){
-                _category=value;
-
-              }, hint: 'Product Category'),
-              SizedBox(height:10),
-              GenericTextFeild(onClick: (value){
-                _price=double.parse(value);
+                GenericTextFeild(onClick: (value){
+                  _name=value;
 
 
 
-              }, hint: 'Product Price'),
-              SizedBox(height:10),
-              GenericTextFeild(onClick: (value){
-                _description=value;
+                }, hint: 'Product Name'),
+                SizedBox(height:10),
+                GenericTextFeild(onClick: (value){
+                  _category=value;
 
-              }, hint: 'Product Description'),
-              SizedBox(height:10),
+                }, hint: 'Product Category'),
+                SizedBox(height:10),
+                GenericTextFeild(onClick: (value){
+                  _price=double.parse(value);
 
 
 
-              ButtonTheme(
-                minWidth: 80.0,
-                height: 60.0,
-                child: Builder(
-                  builder: (context)=> RaisedButton.icon(
+                }, hint: 'Product Price'),
+                SizedBox(height:10),
+                GenericTextFeild(onClick: (value){
+                  _description=value;
 
-                      onPressed: () async{if (_globalKey.currentState.validate())
-                        try {
-                        //await checkdescrption();
-                        await uploadPic(context);
+                }, hint: 'Product Description'),
+                SizedBox(height:10),
 
-                        print(_description);
-              //Future.delayed(const Duration(milliseconds: 4000));
 
-                        _globalKey.currentState.save();
 
-                         //uploadPic(context);
+                ButtonTheme(
+                  minWidth: 80.0,
+                  height: 60.0,
+                  child: Builder(
+                    builder: (context)=> RaisedButton.icon(
 
-                           _Products.updateProduct(
+                        onPressed: () async{if (_globalKey.currentState.validate())
+                          try {
+                          //await checkdescrption();
+                          await uploadPic(context);
 
-                               ({
-                                 kProductName: _name,
-                                 kProductPrice: _price,
-                                 kProductDescription: _description,
-                                 kProductImageUrl: _picturePath
-                               }), p.pID);
-                        Navigator.pop(context) ;
+                          print(_description);
+                //Future.delayed(const Duration(milliseconds: 4000));
+
+                          _globalKey.currentState.save();
+
+                           //uploadPic(context);
+
+                             _Products.updateProduct(
+
+                                 ({
+                                   kProductName: _name,
+                                   kProductPrice: _price,
+                                   kProductDescription: _description,
+                                   kProductImageUrl: _picturePath
+                                 }), p.pID);
+                          Navigator.pop(context) ;
   //print('after for loop '+_picturePath);
 }
 
-                        catch (e) { print(e.toString());
-                        if (e.toString().contains('Failed assertion')) {
+                          catch (e) { print(e.toString());
+                          if (e.toString().contains('Failed assertion')) {
 
 
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text("Pls enter a pic"
-                            ),
-                          ));
-                        }
-                        else if (e.toString().contains('FormatException: Invalid double')){
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Pls enter a pic"
+                              ),
+                            ));
+                          }
+                          else if (e.toString().contains('FormatException: Invalid double')){
 
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text("Please Enter price as a number"
-                            ),
-                          ));
-                        }
-                        else {
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Please Enter price as a number"
+                              ),
+                            ));
+                          }
+                          else {
 
-                          Scaffold.of(context).showSnackBar(SnackBar(
-                            content: Text("Entered Successfuly"
-                            ),
-                          ));
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Entered Successfuly"
+                              ),
+                            ));
 
-                        }
-                        }
+                          }
+                          }
 
 catch (e){
-                        print (e.toString());
+                          print (e.toString());
   Scaffold.of(context).showSnackBar(SnackBar(content:Text(e.toString()
   ),
   ));
@@ -209,22 +211,23 @@ catch (e){
 
 
 
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                      label: Text('Save',
-                        style: TextStyle(color: Colors.white),),
-                      icon: Icon(Icons.add, color:Colors.white,),
-                      textColor: Colors.white,
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                        label: Text('Save',
+                          style: TextStyle(color: Colors.white),),
+                        icon: Icon(Icons.add, color:Colors.white,),
+                        textColor: Colors.white,
 
-                      color: Colors.black),
+                        color: Colors.cyan),
+                  ),
                 ),
-              ),
 
-            ],
-
+              ],
 
 
+
+            ),
           ),
         )
 

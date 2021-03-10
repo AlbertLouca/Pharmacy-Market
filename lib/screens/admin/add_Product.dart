@@ -73,131 +73,134 @@ print('done'+_picturePath);
 
         body :Form(
           key:_globalKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-
-              SizedBox(height: 20.0,),
-
-
-
-
-
-              CircleAvatar(radius: 100,
-                  backgroundColor: Colors.grey,
-                  child:ClipOval(
-
-                      child:SizedBox(
-
-                        width: 180.0,
-                        height: 180.0,
-                        child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Text(''),
-
-                      )
-
-                  )),
-
-              SizedBox(height:30),
-
-              RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.grey,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
+          child: SingleChildScrollView
+            (
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(' \n\n '),
+                SizedBox(height: 20.0,),
 
 
 
-              GenericTextFeild(onClick: (value){
-                _name=value;
 
 
-              }, hint: 'Product Name'),
-              SizedBox(height:10),
-              GenericTextFeild(onClick: (value){
-                _category=value;
+                CircleAvatar(radius: 100,
+                    backgroundColor: Colors.grey,
+                    child:ClipOval(
+
+                        child:SizedBox(
+
+                          width: 180.0,
+                          height: 180.0,
+                          child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Text(''),
+
+                        )
+
+                    )),
+
+                SizedBox(height:30),
+
+                RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.grey,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
 
 
 
-              }, hint: 'Product Category'),
-              SizedBox(height:10),
-              GenericTextFeild(onClick: (value){
-                _price=double.parse(value);
+                GenericTextFeild(onClick: (value){
+                  _name=value;
+
+
+                }, hint: 'Product Name'),
+                SizedBox(height:10),
+                GenericTextFeild(onClick: (value){
+                  _category=value;
 
 
 
-              }, hint: 'Product Price'),
-              SizedBox(height:10),
-              GenericTextFeild(onClick: (value){
-                _description=value;
-
-              }, hint: 'Product Description'),
-              SizedBox(height:10),
-
-              ButtonTheme(
-                minWidth: 80.0,
-                height: 60.0,
-                child: Builder(
-                  builder: (context)=>RaisedButton.icon(
-
-                      onPressed: () async{if (_globalKey.currentState.validate())
-                        try {
-                          await uploadPic(context);
-
-                          //Future.delayed(const Duration(milliseconds: 4000));
-
-                          _globalKey.currentState.save();
-                          //uploadPic(context);
+                }, hint: 'Product Category'),
+                SizedBox(height:10),
+                GenericTextFeild(onClick: (value){
+                  _price=double.parse(value);
 
 
-                          _Products.addProduct(Product(
-                            pCategory: _category,
-                              pName: _name,
-                              pPrice: _price,
-                              pDescription: _description,
-                              pImageURl: _picturePath
-                              , pQuantity: 1,
-                          ));
-                          //print('after for loop '+_picturePath);
-                          Navigator.pop(context)
-                          ;
-                        }
-                        catch (e) { print(e.toString());
-                          if (e.toString().contains('Failed assertion')) {
+
+                }, hint: 'Product Price'),
+                SizedBox(height:10),
+                GenericTextFeild(onClick: (value){
+                  _description=value;
+
+                }, hint: 'Product Description'),
+                SizedBox(height:10),
+
+                ButtonTheme(
+                  minWidth: 80.0,
+                  height: 60.0,
+                  child: Builder(
+                    builder: (context)=>RaisedButton.icon(
+
+                        onPressed: () async{if (_globalKey.currentState.validate())
+                          try {
+                            await uploadPic(context);
+
+                            //Future.delayed(const Duration(milliseconds: 4000));
+
+                            _globalKey.currentState.save();
+                            //uploadPic(context);
 
 
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text("Pls enter a pic"
-                              ),
+                            _Products.addProduct(Product(
+                              pCategory: _category,
+                                pName: _name,
+                                pPrice: _price,
+                                pDescription: _description,
+                                pImageURl: _picturePath
+                                , pQuantity: 1,
                             ));
+                            //print('after for loop '+_picturePath);
+                            Navigator.pop(context)
+                            ;
                           }
-                          else if (e.toString().contains('FormatException: Invalid double')){
+                          catch (e) { print(e.toString());
+                            if (e.toString().contains('Failed assertion')) {
 
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text("Please Enter price as a number"
-                              ),
-                            ));
+
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text("Pls enter a pic"
+                                ),
+                              ));
+                            }
+                            else if (e.toString().contains('FormatException: Invalid double')){
+
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text("Please Enter price as a number"
+                                ),
+                              ));
+                            }
+                            else {
+
+                              Scaffold.of(context).showSnackBar(SnackBar(
+                                content: Text("Entered Successfuly"
+                                ),
+                              ));
+
+                            }
                           }
-                          else {
+                        },
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                        label: Text('Save',
+                          style: TextStyle(color: Colors.white),),
+                        icon: Icon(Icons.add, color:Colors.white,),
+                        textColor: Colors.white,
 
-                            Scaffold.of(context).showSnackBar(SnackBar(
-                              content: Text("Entered Successfuly"
-                              ),
-                            ));
-
-                          }
-                        }
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                      label: Text('Save',
-                        style: TextStyle(color: Colors.white),),
-                      icon: Icon(Icons.add, color:Colors.white,),
-                      textColor: Colors.white,
-
-                      color: Colors.cyan),
+                        color: Colors.cyan),
+                  ),
                 ),
-              ),
 
-            ],
-
+              ],
 
 
+
+            ),
           ),
         )
 

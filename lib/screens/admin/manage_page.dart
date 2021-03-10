@@ -13,51 +13,58 @@ class Manage_screen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      backgroundColor: kBackGroundColor,
+      backgroundColor: KAppBarColor,
 body:Column(
   mainAxisAlignment: MainAxisAlignment.center,
  crossAxisAlignment: CrossAxisAlignment.center,
-children: <Widget> [
-  SizedBox(
-    width: double.infinity,
+children: [
+  ListBody(
+    children:     <Widget> [
+      SizedBox(
+    
+        width: double.infinity,
+      ),
+      
+      ElevatedButton.icon(onPressed: (){
+        Navigator.pushNamed(context, AddProduct.id);
+    
+      },
+    
+          icon: Icon(Icons.add),
+    
+    
+          label: Text('Add Product    ')
+    
+    
+      ),  ElevatedButton.icon(onPressed: (){
+        Navigator.pushNamed(context, OrdersScreen.id);
+    
+      },
+          icon: Icon(Icons.shopping_bag_rounded),
+    
+    
+          label: Text('Manage orders  ')
+    
+    
+      ),
+    
+      ElevatedButton.icon(onPressed: (){
+        Navigator.pushNamed(context, ViewProduct.id);
+    
+      }, icon:
+      Icon(Icons.view_agenda_rounded),
+    
+    
+          label: Text(' Edit  / Delete    ')
+    
+    
+      ),
+    
+    
+    
+    
+    ],
   ),
-  RaisedButton.icon(onPressed: (){
-    Navigator.pushNamed(context, AddProduct.id);
-
-  },
-      icon: Icon(Icons.add),
-
-
-      label: Text('Add Product    ')
-
-
-  ),  RaisedButton.icon(onPressed: (){
-    Navigator.pushNamed(context, OrdersScreen.id);
-
-  },
-      icon: Icon(Icons.shopping_bag_rounded),
-
-
-      label: Text('Manage orders  ')
-
-
-  ),
-
-  RaisedButton.icon(onPressed: (){
-    Navigator.pushNamed(context, ViewProduct.id);
-
-  }, icon:
-  Icon(Icons.view_agenda_rounded),
-
-
-      label: Text(' Edit  / Delete    ')
-
-
-  ),
-
-
-
-
 ],
 
 ),
