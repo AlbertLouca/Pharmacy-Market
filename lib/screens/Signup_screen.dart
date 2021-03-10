@@ -156,7 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     child: TextFormField(
                       validator: (value) {
                         if (value.isEmpty || !(value.length == 11)) {
-                          return value.isEmpty ? "The Number is invalid" : null;
+                          return value.isEmpty|| !(value.length==11) ? "The Number is invalid" : null;
                         }
                         return null;
                       },
