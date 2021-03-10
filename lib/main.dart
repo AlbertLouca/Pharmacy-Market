@@ -51,10 +51,6 @@ class MyApp extends StatelessWidget{
 
      // initialRoute: SignupScreen.id,
 
-<<<<<<< Updated upstream
-=======
-      initialRoute: AddProduct.id,
->>>>>>> Stashed changes
       routes: {
         Profile.id:(context)=>Profile(),
         favorites_screen.id:(context)=>favorites_screen(),
