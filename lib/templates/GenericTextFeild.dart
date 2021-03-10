@@ -12,6 +12,7 @@ switch (hint){
   case 'Product Name':return'Product Name is empty';
   case 'Product Description': return'Product Description is empty';
   case 'Product Price':return'Product Price is empty';
+  case 'Product Category':return 'Product Category is Empty';
 
 
   //case 'Enter Product Name':return'Product Name is empty';

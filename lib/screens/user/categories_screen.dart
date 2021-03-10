@@ -1,14 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants.dart';
 import '../Signup_screen.dart';
 import '../../services/NavBar.dart';
 
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends StatefulWidget {
   static String id='CategoriesScreen';
 
+  @override
+  _CategoryScreenState createState() => _CategoryScreenState();
+}
 
+
+class _CategoryScreenState extends State<CategoryScreen> {
+  var Name,Fname;
+  getName()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Name = preferences.getString("name");
+    return Name;
+
+  }
+  @override
+  void initState(){
+
+    getName().then((name){
+
+      setState(() {
+        Fname= name;
+      });
+    });
+
+    super.initState();
+
+    //print('Name form init state'+Name);
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -18,7 +45,7 @@ class CategoryScreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(child: Center(child: Text('Hello User'))),
+            DrawerHeader(child: Center(child: Text('Hello'+Fname))),
             Container(
               constraints: BoxConstraints(maxWidth: 250.0, minHeight: 50.0),
               margin: EdgeInsets.all(10),
