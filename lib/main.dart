@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget{
         debugShowCheckedModeBanner: false,
 
 
-      initialRoute: CategoryScreen.id,
+      initialRoute: MyMaps.id,
 
      // initialRoute: SignupScreen.id,
 

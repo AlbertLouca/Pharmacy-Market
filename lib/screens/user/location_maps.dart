@@ -35,7 +35,7 @@ class _MyMapsState extends State<MyMaps> {
     longitude = "$long";
 
     setState(() {
-      locationMessage = "   Latitude: $lat and Longitude: $long";
+      locationMessage = "Latitude: $lat and Longitude: $long";
     });
   }
 
