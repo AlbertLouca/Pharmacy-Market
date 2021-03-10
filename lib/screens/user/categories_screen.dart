@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'file:///D:/University/Pharmacy-Market/lib/screens/user/NavBar.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import '../../constants.dart';
 import '../Signup_screen.dart';
+import 'NavBar.dart';
 
 
 class CategoryScreen extends StatelessWidget {
