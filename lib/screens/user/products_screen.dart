@@ -83,7 +83,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                         height: MediaQuery.of(context).size.height /5,
                         width:  MediaQuery.of(context).size.width * 0.8,
 
-                        margin: EdgeInsets.all(25.0),
+                        margin: EdgeInsets.all(5.0),
                         child: Consumer<Cart>(builder: (context,cart,child){
 
                           return Wrap (
@@ -115,7 +115,7 @@ Row(
     Text( spacing(x.pName) +' ', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
 
-
+    Text( spacing(x.pDescription) +' ', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
 
 Row(
@@ -147,6 +147,7 @@ Row(
   ],
 
 ),
+
 
                             ],
                           );
