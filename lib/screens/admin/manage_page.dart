@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/screens/admin/EditProduct.dart';
+import 'package:pharmacynew/screens/admin/OrdersScreen.dart';
 import 'package:pharmacynew/screens/admin/View_Product.dart';
 import 'package:pharmacynew/screens/admin/add_Product.dart';
 
@@ -30,6 +31,16 @@ children: <Widget> [
       label: Text('Add Product    ')
 
 
+  ),  RaisedButton.icon(onPressed: (){
+    Navigator.pushNamed(context, OrdersScreen.id);
+
+  },
+      icon: Icon(Icons.shopping_bag_rounded),
+
+
+      label: Text('Manage orders  ')
+
+
   ),
 
   RaisedButton.icon(onPressed: (){
@@ -39,7 +50,7 @@ children: <Widget> [
   Icon(Icons.view_agenda_rounded),
 
 
-      label: Text('View Product    ')
+      label: Text(' Edit  / Delete    ')
 
 
   ),
