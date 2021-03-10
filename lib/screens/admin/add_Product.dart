@@ -71,7 +71,7 @@ print('done'+_picturePath);
 
 
     return Scaffold(
-        backgroundColor: kBackGroundColor,
+        backgroundColor: Colors.white,
 
         body :Form(
           key:_globalKey,

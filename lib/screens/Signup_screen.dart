@@ -1,10 +1,15 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Users.dart';
+import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
+import 'package:pharmacynew/screens/user/location_maps.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'package:provider/provider.dart';
+import '../constants.dart';
 import 'package:pharmacynew/models/user.dart';
+import 'package:pharmacynew/screens/login_screen.dart';
+import 'package:pharmacynew/screens/user/location_maps.dart';
 
 class SignupScreen extends StatefulWidget {
   static String id = 'SignupScreen';
@@ -20,6 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final RegExp emailRegex = new RegExp(
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
+  //var _isLoading = false;
   TextEditingController _name = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
@@ -173,7 +179,18 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _address,
                       keyboardType: TextInputType.streetAddress,
                       decoration: InputDecoration(labelText: 'Home Address'),
-                    )),
+                    )), RaisedButton(onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyMaps(),
+                    ),
+
+                  );
+
+                },
+                    child: Text('Find My Address'),
+                ),
                 RaisedButton(
                   onPressed: () async {
                     print(_email.text);
@@ -198,7 +215,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         if (_formKey.currentState.validate()) {
                           _showSignupDialog('Welcome, Redirecting in 5');
 
-                          Timer(Duration(seconds: 4), () {
+                          Timer(Duration(seconds: 5), () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
