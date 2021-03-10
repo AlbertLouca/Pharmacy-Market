@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:pharmacynew/screens/admin/manage_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pharmacynew/screens/user/Cart_screen.dart';
+import 'package:pharmacynew/screens/user/favorites_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:pharmacynew/screens/Signup_screen.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
@@ -38,10 +39,12 @@ class MyApp extends StatelessWidget{
      return Cart();
 
     },
+
     child: MaterialApp(
 
-      initialRoute: SignupScreen.id,
+      initialRoute: ProductsScreen.id,
       routes: {
+        favorites_screen.id:(context)=>favorites_screen(),
         Cart_screen.id:(context)=>Cart_screen(),
         CategoryScreen.id:(context)=>CategoryScreen(),
         SignupScreen.id:(context)=>SignupScreen(),

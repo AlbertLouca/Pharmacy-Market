@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,25 +13,26 @@ import '../../constants.dart';
 class Cart_screen extends StatefulWidget {
   static String id = 'CartScreen';
 
-
   @override
   _Cart_screenState createState() => _Cart_screenState();
-
-
 }
 
 class _Cart_screenState extends State<Cart_screen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
 
-      bottomNavigationBar: BottomNavigationBar(
+
+    return Scaffold(
+      bottomNavigationBar:
+
+
+
+      BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money),
             label: ' Confirm',
@@ -42,20 +45,28 @@ class _Cart_screenState extends State<Cart_screen> {
             case 0:
               {
                 setState(() {
-
-                  Navigator.pushNamed(context,ProductsScreen.id,);
-
-
+                  Navigator.pushNamed(
+                    context,
+                    ProductsScreen.id,
+                  );
                 });
               }
               break;
             case 1:
               {
 
+                _showLoginDialog();
 
+                Timer(Duration(seconds: 2), () {
+                  setState(() {
+                    Navigator.pushNamed(
+                      context,
+                      ProductsScreen.id,
+                    );
+                  });
+                });
               }
               break;
-
           }
         },
       ),
@@ -63,46 +74,61 @@ class _Cart_screenState extends State<Cart_screen> {
         backgroundColor: KAppBarColor,
         title: Text('Checkout'),
         actions: [
-
           Padding(
-              padding: const EdgeInsets.only(right: 40 ,top: 30),
-              child: Consumer<Cart>(builder:(context,cart,child){
-                return Text('Total: ${cart.get_price()} EGP',style: TextStyle(color: Colors.green,fontSize: 15),);
-              })
-
+              padding: const EdgeInsets.only(right: 40, top: 30),
+              child: Consumer<Cart>(builder: (context, cart, child) {
+                return Text(
+                  'Total: ${cart.get_price().roundToDouble()} EGP',
+                  style: TextStyle(color: Colors.green, fontSize: 15),
+                );
+              }
+              )
           )
-
         ],
       ),
-      body: Consumer<Cart>(builder: (context,cart, child){
+      body: Consumer<Cart>(
+        builder: (context, cart, child) {
 
-       return ListView.builder(itemCount: cart.Products.length, itemBuilder: (context, i) {
-          return Card(
+          return ListView.builder(
+              itemCount: cart.Products.length,
+              itemBuilder: (context, i) {
+                return Card(
+                  child: ListTile(
+                    title: //
+                        RichText(
+                            text: TextSpan(
+                                text: ' ${cart.Products[i].pName}   ',
+                                style: TextStyle(color: Colors.black),
+                                children: <TextSpan>[
+                          TextSpan(
+                              text: ' ${cart.Products[i].pPrice} EGP',
+                              style: TextStyle(color: Colors.green))
+                        ])),
+                    trailing: IconButton(
+                      icon: Icon(Icons.remove),
+                      onPressed: () {
+                        cart.Removefromcart(cart.Products[i]);
+                      },
+                    ),
+                  ),
+                );
+              },
 
-            child: ListTile(title: //
-RichText(
-  text:TextSpan(
-    text:' ${cart.Products[i].pName}   ',
-style: TextStyle(color: Colors.black),
-children: <TextSpan>[
-  TextSpan(text: ' ${cart.Products[i].pPrice} EGP',style: TextStyle(color: Colors.green)   )
-]
-  )
 
-),
-              trailing: IconButton(icon: Icon(Icons.remove), onPressed: () {
-                cart.Removefromcart(cart.Products[i]);
 
-              },),),
-          );
-        }
-        );
+              );
+        },
+      ),
+    );
+  }
 
-      },
-      )
-
-      ,
-
+  void _showLoginDialog() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Successful Confirmation '),
+        content: Text('Your order is on the way'),
+      ),
     );
   }
 }

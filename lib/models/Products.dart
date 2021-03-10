@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 final  _firestore= FirebaseFirestore.instance;
 
-class Products {
+class Products  with ChangeNotifier{
   List <Product> products = [];
 
  void addProduct(Product p) {

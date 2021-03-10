@@ -1,3 +1,5 @@
+import 'Product.dart';
+
 enum AuthMode { Signup, Signin }
 
 class UserModel {
@@ -9,7 +11,7 @@ class UserModel {
   String conpassword;
   String mobile;
   String address;
-
+  List <Product> favorites=[];
   UserModel({
     token,
     this.id,

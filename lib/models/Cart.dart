@@ -38,6 +38,18 @@ _count+=1;
 
     notifyListeners();
   }
+  void Emptycart(){
+
+    Products.clear();
+
+
+
+
+    _price=0;
+    _count=0;
+
+    notifyListeners();
+  }
 int get_count(){
   return _count;
 }
