@@ -23,53 +23,7 @@ class _Cart_screenState extends State<Cart_screen> {
 
 
     return Scaffold(
-      bottomNavigationBar:
 
-
-
-      BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.attach_money),
-            label: ' Confirm',
-          ),
-        ],
-        currentIndex: 1,
-        selectedItemColor: Colors.green[800],
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              {
-                setState(() {
-                  Navigator.pushNamed(
-                    context,
-                    ProductsScreen.id,
-                  );
-                });
-              }
-              break;
-            case 1:
-              {
-
-                _showLoginDialog();
-
-                Timer(Duration(seconds: 2), () {
-                  setState(() {
-                    Navigator.pushNamed(
-                      context,
-                      ProductsScreen.id,
-                    );
-                  });
-                });
-              }
-              break;
-          }
-        },
-      ),
       appBar: AppBar(
         backgroundColor: KAppBarColor,
         title: Text('Checkout'),
@@ -90,6 +44,7 @@ class _Cart_screenState extends State<Cart_screen> {
         builder: (context, cart, child) {
 
           return ListView.builder(
+
               itemCount: cart.Products.length,
               itemBuilder: (context, i) {
                 return Card(
@@ -111,14 +66,37 @@ class _Cart_screenState extends State<Cart_screen> {
                       },
                     ),
                   ),
+
                 );
+
               },
 
 
 
               );
+
         },
-      ),
+      )
+      ,floatingActionButton:Consumer<Cart>(
+    builder: (context, cart, child) { return RaisedButton(
+
+      onPressed: () {
+        cart.Emptycart();
+        _showLoginDialog();
+
+        Timer(Duration(seconds: 2), () {
+          setState(() {
+            Navigator.pushNamed(
+              context,
+              ProductsScreen.id,
+            );
+          });
+        });
+      },
+color: Colors.white,
+      child: Text( 'Confirm Order', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.green , fontSize: 25)),
+    );
+    })
     );
   }
 

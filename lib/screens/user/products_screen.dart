@@ -80,13 +80,13 @@ class _ProductsscreenState extends State<ProductsScreen> {
                           return Wrap (
 
                             children: [
-                              CircleAvatar(radius: 50,
+                              CircleAvatar(radius: 30,
                                 child:ClipOval(
 
                                     child:SizedBox(
 
-                                      width: 180.0,
-                                      height: 180.0,
+                                      width: 150.0,
+                                      height: 150.0,
                                       child :Image.network(x.pImageURl,
                                           fit:BoxFit.fill),
 
