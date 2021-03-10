@@ -141,27 +141,35 @@ class _Cart_screenState extends State<Cart_screen> {
     builder: (context, cart, child) { return RaisedButton(
 
       onPressed: () {
-        Products _p = new Products();
-        print (cart.Products);
-        print (cart.get_price());
-        _p.StoreOrders({
-          KTotalPrice:cart.get_price(),
-          KOrderName:Fname,
-          KOrderAddress:Faddress,
-          KOrderPhoneNumber:FPhone
+        if(cart.get_price()!=0)
+        {
+          Products _p = new Products();
+          print (cart.Products);
+          print (cart.get_price());
+          _p.StoreOrders({
+            KTotalPrice:cart.get_price(),
+            KOrderName:Fname,
+            KOrderAddress:Faddress,
+            KOrderPhoneNumber:FPhone
 
-        },cart.Products);
-        cart.Emptycart();
-        _showLoginDialog();
+          },cart.Products);
+          cart.Emptycart();
+          _showLoginDialog('Successful Order ');
 
-        Timer(Duration(seconds: 2), () {
-          setState(() {
-            Navigator.pushNamed(
-              context,
-              CategoryScreen.id,
-            );
+          Timer(Duration(seconds: 2), () {
+            setState(() {
+              Navigator.pushNamed(
+                context,
+                CategoryScreen.id,
+              );
+            });
           });
-        });
+
+        }
+else {
+          _showLoginDialog('your cart is empty');
+
+        }
 
 
       },
@@ -172,12 +180,12 @@ color: Colors.white,
     );
   }
 
-  void _showLoginDialog() {
+  void _showLoginDialog(String x) {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('Successful Confirmation '),
-        content: Text('Your order is on the way'),
+        title: Text(x),
+
       ),
     );
   }

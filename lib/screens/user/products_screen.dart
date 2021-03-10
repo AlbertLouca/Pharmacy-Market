@@ -115,20 +115,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                               Text( '       \n \n '+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
                               Text('  '),
 
-                              IconButton(
-                                onPressed: (){
 
-
-                                },
-
-                                icon: Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.black,
-
-                                ),padding: const EdgeInsets.only(right:10),
-
-                                color: Colors.red[500],
-                              ),
                               Text('    '),
                               IconButton(
                                 onPressed: (){
