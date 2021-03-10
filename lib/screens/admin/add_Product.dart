@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 import 'dart:math';
 import 'package:flutter/material.dart';
@@ -86,14 +84,14 @@ print('done'+_picturePath);
 
 
               CircleAvatar(radius: 100,
-                  backgroundColor: kFillTextFeildColor,
+                  backgroundColor: Colors.grey,
                   child:ClipOval(
 
                       child:SizedBox(
 
                         width: 180.0,
                         height: 180.0,
-                        child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Text('Upload an image'),
+                        child:(_image!=null)?Image.file(_image,fit:BoxFit.fill):Text(''),
 
                       )
 
@@ -101,7 +99,7 @@ print('done'+_picturePath);
 
               SizedBox(height:30),
 
-              RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.white,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
+              RaisedButton.icon(onPressed:(){ getImage();}, icon:Icon(Icons.upload_file, color:Colors.grey,) , label:Text('upload image',style: TextStyle(color:Colors.white),)),
 
 
 
@@ -171,7 +169,7 @@ print('done'+_picturePath);
                       icon: Icon(Icons.add, color:Colors.white,),
                       textColor: Colors.white,
 
-                      color: Colors.black),
+                      color: Colors.purple),
                 ),
               ),
 

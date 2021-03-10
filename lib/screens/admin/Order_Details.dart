@@ -3,61 +3,50 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Cart.dart';
+import 'package:pharmacynew/models/Order.dart';
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
-
+import 'package:pharmacynew/NavBar.dart';
 import 'package:pharmacynew/screens/user/Cart_screen.dart';
 import 'package:pharmacynew/services/NavBar.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 
 
-class ProductsScreen extends StatefulWidget {
-  static String id='ProductScreen';
+class OrdersDetails extends StatefulWidget {
+  static String id='OrderDetails';
 
 
   final  Firestore= FirebaseFirestore.instance;
   @override
-  _ProductsscreenState createState() => _ProductsscreenState();
+  _OrdersDetailsState createState() => _OrdersDetailsState();
 
 
 }
 
-class _ProductsscreenState extends State<ProductsScreen> {
+class _OrdersDetailsState extends State<OrdersDetails> {
+  final Products _p=new Products();
 
-  Cart cart;
-  Products items;
+  //final Products _p=new Products();
 
   Widget build(BuildContext context) {
-   String title= ModalRoute.of(context).settings.arguments;
+    String documentID= ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
 
         bottomNavigationBar:NavBar(1),
         appBar: AppBar(
           backgroundColor: KAppBarColor,
-          title:Text('$title Products '),
+          title:Text('Order Details '),
           actions: [
-            IconButton(
-              icon: Icon(Icons.shopping_bag_rounded),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Cart_screen()));
-              },
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 30),
-              child: Consumer<Cart>(builder:(context,cart,child){
-                return Text('${cart.get_count()}');
-              })
 
-            )
 
           ],  ),
 
 
-        body: StreamBuilder(
+        body: StreamBuilder<QuerySnapshot>(
 
-            stream:FirebaseFirestore.instance.collection(kProductsCollection).snapshots(),             //which table to read from
+            stream:_p.loadOrderDetails(documentID),             //which table to read from
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){             // auto update
               if  (!snapshot.hasData){
                 return Center(
@@ -68,15 +57,12 @@ class _ProductsscreenState extends State<ProductsScreen> {
               }
 
               return ListView(
-                  children: snapshot.data.docs.map((products){
-                    Product x=Product(pName: products['Name'], pPrice: products['Price'], pDescription: products['Description'],pImageURl: products['Image URl'],pCategory: products['Category']);
+                  children: snapshot.data.docs.map((details){
+                    Product p=Product(pName: details[kProductName],pPrice: details[kProductPrice],pQuantity: details[KProductQuantity]);
 
 
-                    if(x.pCategory!= title){
-                      
-                      return Text('');
-                    }
-                   // items.products.add(x);
+
+                    // items.products.add(x);
 
                     return Container(
 
@@ -89,31 +75,16 @@ class _ProductsscreenState extends State<ProductsScreen> {
                           return Wrap (
 
                             children: [
-                              CircleAvatar(radius: 30,
-                                child:ClipOval(
-
-                                    child:SizedBox(
-
-                                      width: 150.0,
-                                      height: 150.0,
-                                      child :Image.network(x.pImageURl,
-                                          fit:BoxFit.fill),
-
-                                    )
-
-                                ),
-
-                              ),
 
 
                               new Chip (
 
-                                label:  Text( spacing(x.pName), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                                label:  Text( spacing(p.pName), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
                               ),
 
-                              Text( '       \n \n '+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-                              Text('  '),
+                              Text( '       \n \n '+"   "+p.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
+                              Text( '       \n \n '+"   "+p.pQuantity.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
 
                               IconButton(
                                 onPressed: (){
@@ -134,7 +105,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
                                 onPressed: (){
 
 
-                                  cart.AddtoCart(x);
+                                  //cart.AddtoCart(x);
 
                                 },
 
@@ -171,7 +142,7 @@ class _ProductsscreenState extends State<ProductsScreen> {
   }
 }
 String spacing(String x){
- String y='';
+  String y='';
   if(x.length>10){
     y= x.substring(0,9);
     y=y+"...";

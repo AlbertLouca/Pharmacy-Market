@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'NavBar.dart';
+import '../../services/NavBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class Profile extends StatefulWidget {
   @override
@@ -99,7 +99,7 @@ getAddress().then((address){
     //getPref(ID,Name,Phone,mail,address);
     return MaterialApp(
       home: Scaffold(
-        bottomNavigationBar: NavBar(0),
+
         appBar: AppBar(
           title: Text(
             "Profile",

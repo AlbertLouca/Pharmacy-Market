@@ -63,9 +63,18 @@ class Products  with ChangeNotifier{
 
     }
   }
+  Stream<QuerySnapshot>loadOrders(){
+   return _firestore.collection(KOrdersCollection).snapshots();
+
+  }
+  Stream<QuerySnapshot>loadOrderDetails(documentID){
+    return _firestore.collection(KOrdersCollection).doc(documentID).collection(KOrderDetais).snapshots();
+
+  }
 
 
-   }
+
+}
 
 
 

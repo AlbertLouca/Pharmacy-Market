@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/constants.dart';
 import 'package:pharmacynew/screens/admin/add_Product.dart';
+import 'package:pharmacynew/screens/admin/manage_page.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
-import 'Profile.dart';
-import '../../old/Settings.dart';
+import '../screens/user/Profile.dart';
+import '../old/Settings.dart';
 
 
 class NavBar extends StatefulWidget {
@@ -67,7 +68,7 @@ class _NavBarState extends State<NavBar> {
             {
               setState(() {
 
-                  Navigator.pushNamed(context,AddProduct.id,);
+                  Navigator.pushNamed(context,Manage_screen.id,);
 
               });
             }

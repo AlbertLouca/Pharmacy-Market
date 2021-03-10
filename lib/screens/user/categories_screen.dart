@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
 import '../../constants.dart';
 import '../Signup_screen.dart';
-import 'NavBar.dart';
+import '../../services/NavBar.dart';
 
 
 class CategoryScreen extends StatelessWidget {

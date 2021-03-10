@@ -32,16 +32,16 @@ return Padding(padding: const EdgeInsets.symmetric(horizontal: 30),
 
     },
 onSaved: onClick,
-    cursorColor: kBackGroundColor,
+    cursorColor: Colors.pinkAccent,
     decoration: InputDecoration(
+      hintStyle: TextStyle(fontSize: 20.0, color: Colors.grey[60]),
       hintText: hint,
       prefixIcon: Icon(
         icon,
         color:kBackGroundColor,
 
       ),
-      filled:true,
-      fillColor:kFillTextFeildColor,
+   
 
     ),
 

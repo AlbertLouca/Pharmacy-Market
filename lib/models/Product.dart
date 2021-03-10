@@ -14,7 +14,7 @@ class  Product with ChangeNotifier{
   int pQuantity=1;
 
 
-Product({this.pName,this.pPrice,this.pDescription,this.pImageURl,this.pCategory});
+Product({this.pName,this.pPrice,this.pDescription,this.pImageURl,this.pCategory,this.pQuantity});
 
 void increasequantity(){
 
