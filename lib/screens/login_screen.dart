@@ -187,7 +187,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 SignupScreen.id,
               );
             },
-              child: Text('make an Account!')),
+              child: Text('New User? Sign Up Here!')),
             ],
           ),
           )),

@@ -65,8 +65,10 @@ preferences.setString("address", address);
           {'email': email, 'password': password, 'returnSecureToken': true},
         ),
       );
+
       final responseData = json.decode(response.body);
-      print(responseData['error']);
+      print('wslt');
+      print(responseData['email']);
       if (responseData['error'] != null) {
         throw HttpException(responseData['error']['message']);
       }
