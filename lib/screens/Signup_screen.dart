@@ -230,12 +230,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   );
 
                 },
-<<<<<<< Updated upstream
                     child: Text('Find My Address'),
-=======
-                   
-                    child: Text('Find my address'),
->>>>>>> Stashed changes
                 ),
                 RaisedButton(
                   onPressed: () async {
