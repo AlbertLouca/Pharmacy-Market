@@ -68,7 +68,6 @@ class _Cart_screenState extends State<Cart_screen> {
                   ),
 
                 );
-
               },
 
 

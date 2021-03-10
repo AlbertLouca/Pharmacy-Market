@@ -90,7 +90,7 @@ getAddress().then((address){
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-             
+
                 Text(
                   Fname,
                   style: TextStyle(
