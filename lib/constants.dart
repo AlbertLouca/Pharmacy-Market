@@ -20,4 +20,11 @@ const KOrdersCollection='Orders';
 const KOrderDetais='Details';
 const KProductQuantity='Quantity';
 const KTotalPrice='Total price';
+<<<<<<< Updated upstream
 const  KUserType = 'Admin';
+=======
+const KOrderName='OrderName';
+const KOrderAddress='Adress';
+const KOrderPhoneNumber='Phone Number';
+
+>>>>>>> Stashed changes
