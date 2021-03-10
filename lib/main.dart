@@ -49,14 +49,10 @@ class MyApp extends StatelessWidget{
         debugShowCheckedModeBanner: false,
 
 
-<<<<<<< Updated upstream
       //initialRoute: MyMaps.id,
 
       initialRoute: OrdersScreen.id,
 
-=======
-      initialRoute: AddProduct.id,
->>>>>>> Stashed changes
 
      // initialRoute: SignupScreen.id,
 
