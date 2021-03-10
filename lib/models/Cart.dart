@@ -33,9 +33,13 @@ _count+=1;
   notifyListeners();
 }
   void Removefromcart(Product item){
+if(Products[Products.indexOf(item)].pQuantity>1){
+  Products[Products.indexOf(item)].pQuantity-=1;
 
-      Products.remove(item);
-
+}
+else {
+  Products.remove(item);
+}
 
 
     _price-=item.pPrice;

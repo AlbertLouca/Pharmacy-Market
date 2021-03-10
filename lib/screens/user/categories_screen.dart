@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants.dart';
 import '../Signup_screen.dart';
 import '../../services/NavBar.dart';
-
+import 'package:pharmacynew/screens/user/Cart_screen.dart';
 
 class CategoryScreen extends StatefulWidget {
   static String id='CategoriesScreen';
@@ -52,6 +52,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               child: RaisedButton(
                 onPressed: () {
 
+                  Navigator.pushNamed(context, Cart_screen.id);
                 },
                 color: Colors.blue[200],
                 child: Padding(
