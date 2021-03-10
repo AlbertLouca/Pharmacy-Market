@@ -16,6 +16,7 @@ import 'package:pharmacynew/screens/user/location_maps.dart';
 import 'package:pharmacynew/screens/user/notification_test.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'models/Cart.dart';
+import 'old/Profile.dart';
 import 'screens/admin/add_Product.dart';
 import 'screens/user/products_screen.dart';
 void main ()async {
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget{
      // initialRoute: SignupScreen.id,
 
       routes: {
+        Profile.id:(context)=>Profile(),
         favorites_screen.id:(context)=>favorites_screen(),
         Cart_screen.id:(context)=>Cart_screen(),
         CategoryScreen.id:(context)=>CategoryScreen(),

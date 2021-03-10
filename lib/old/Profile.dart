@@ -3,6 +3,7 @@ import 'NavBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class Profile extends StatefulWidget {
   @override
+  static String id = 'ProfileScreen';
   _ProfileState createState() => _ProfileState();
 }
 
