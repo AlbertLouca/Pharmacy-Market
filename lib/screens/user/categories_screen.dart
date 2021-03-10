@@ -107,7 +107,8 @@ class CategoryScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   RaisedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context,ProductsScreen.id,);
+                     String title='Beauty';
+                      Navigator.pushNamed(context,ProductsScreen.id,arguments: title);
                     },
                     color: KAppBarColor,
                     padding: EdgeInsets.fromLTRB(20, 50, 20, 50),
@@ -118,7 +119,8 @@ class CategoryScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   RaisedButton(
                     onPressed: () {
-
+                      String title='Medication';
+                      Navigator.pushNamed(context,ProductsScreen.id,arguments: title ,);
                     },
                     color: KAppBarColor,
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
@@ -129,7 +131,7 @@ class CategoryScreen extends StatelessWidget {
                   const SizedBox(height: 30),
                   RaisedButton(
                     onPressed: () {
-
+                      Navigator.pushNamed(context,ProductsScreen.id,arguments: 'Children' ,);
                     },
                     padding: EdgeInsets.fromLTRB(50, 50, 50, 50),
                     color: KAppBarColor,

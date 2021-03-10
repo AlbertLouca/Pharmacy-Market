@@ -13,6 +13,8 @@ import '../../constants.dart';
 
 class ProductsScreen extends StatefulWidget {
   static String id='ProductScreen';
+   final String title;
+ProductsScreen([this.title]);
 
   final  Firestore= FirebaseFirestore.instance;
   @override
@@ -22,17 +24,17 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsscreenState extends State<ProductsScreen> {
-String title;
-_ProductsscreenState({this.title});
+
   Cart cart;
   Products items;
+
   Widget build(BuildContext context) {
     return Scaffold(
 
         bottomNavigationBar:NavBar(1),
         appBar: AppBar(
           backgroundColor: KAppBarColor,
-          title:Text('Products'),
+          title:Text('Products ${widget.title} '),
           actions: [
             IconButton(
               icon: Icon(Icons.shopping_bag_rounded),
