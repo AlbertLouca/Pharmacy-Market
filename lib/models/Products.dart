@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:pharmacynew/constants.dart';
@@ -42,6 +43,25 @@ class Products  with ChangeNotifier{
     _firestore.collection(kProductsCollection).doc(documentId).delete();
 
 
+  }
+  StoreOrders(data,List<Product>products)
+  {
+    var documentRef=_firestore.collection(KOrdersCollection).doc();
+    documentRef.set(data);
+    for(var product in products) {
+      documentRef.collection(KOrderDetais).doc().set(
+        {kProductName:product.pName,
+          kProductPrice:product.pPrice,
+          KProductQuantity:product.pQuantity,
+
+
+        }
+
+      );
+
+
+
+    }
   }
 
 

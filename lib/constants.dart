@@ -16,3 +16,8 @@ const KUserEmail = 'userEmail';
 const KUserConfirmPassowrd='ConfirmPassword';
 const KUserMobile='Mobile Number';
 const KUserAddress="Address";
+const KOrdersCollection='Orders';
+const KOrderDetais='Details';
+const KProductQuantity='Quantity';
+const KTotalPrice='Total price';
+

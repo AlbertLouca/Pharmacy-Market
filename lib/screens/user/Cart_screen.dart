@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Product.dart';
+import 'package:pharmacynew/models/Products.dart';
 import 'package:pharmacynew/old/NavBar.dart';
 import 'package:provider/provider.dart';
 import 'products_screen.dart';
@@ -85,6 +86,13 @@ class _Cart_screenState extends State<Cart_screen> {
     builder: (context, cart, child) { return RaisedButton(
 
       onPressed: () {
+        Products _p = new Products();
+        print (cart.Products);
+        print (cart.get_price());
+        _p.StoreOrders({
+          KTotalPrice:cart.get_price()
+
+        },cart.Products);
         cart.Emptycart();
         _showLoginDialog();
 
@@ -96,6 +104,8 @@ class _Cart_screenState extends State<Cart_screen> {
             );
           });
         });
+
+
       },
 color: Colors.white,
       child: Text( 'Confirm Order', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.green , fontSize: 25)),
