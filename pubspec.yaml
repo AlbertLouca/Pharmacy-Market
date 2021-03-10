@@ -28,6 +28,11 @@ dependencies:
   firebase_auth: ^0.20.1
   cloud_firestore: ^0.16.0+1
   firebase_storage: ^7.0.0
+  google_maps: ^4.0.0
+  geolocator: ^6.2.1
+  url_launcher: ^5.7.10 
+  rflutter_alert: ^1.0.2
+  firebase_messaging: ^5.0.2
   image_picker: ^0.6.7+22
   http: ^0.12.2
   shared_preferences: ^0.5.12+4

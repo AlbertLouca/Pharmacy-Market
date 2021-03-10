@@ -12,6 +12,8 @@ import 'package:pharmacynew/screens/Signup_screen.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
 import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/screens/user/products_screen.dart';
+import 'package:pharmacynew/screens/user/location_maps.dart';
+import 'package:pharmacynew/screens/user/notification_test.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'models/Cart.dart';
 import 'screens/admin/add_Product.dart';
@@ -53,6 +55,8 @@ class MyApp extends StatelessWidget{
         Manage_screen.id:(context)=>Manage_screen(),
         AddProduct.id:(context)=>AddProduct(),
         ProductsScreen.id:(context)=>ProductsScreen(),
+        MyMaps.id: (context) => MyMaps(),
+        MyNotification.id: (context) => MyNotification(),
         ViewProduct.id:(context)=>ViewProduct(),
         EditProduct.id:(context)=>EditProduct()
       },
