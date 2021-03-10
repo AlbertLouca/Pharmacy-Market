@@ -171,7 +171,7 @@ print('done'+_picturePath);
                         Navigator.pop(context) ;
   //print('after for loop '+_picturePath);
 }
-<<<<<<< HEAD
+
                         catch (e) { print(e.toString());
                         if (e.toString().contains('Failed assertion')) {
 
@@ -197,7 +197,7 @@ print('done'+_picturePath);
 
                         }
                         }
-=======
+
 catch (e){
                         print (e.toString());
   Scaffold.of(context).showSnackBar(SnackBar(content:Text(e.toString()
@@ -208,7 +208,7 @@ catch (e){
 }
 
 
->>>>>>> 6c509045ef5a6ed615d30a9c9ebcd6b6ea110254
+
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0))),
