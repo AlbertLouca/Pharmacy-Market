@@ -71,7 +71,7 @@ final Products _p=new Products();
                   children: snapshot.data.docs.map((Orders)
 
                   {
-                    Order x=Order(oTotalPrice:Orders['Total price'],documentID: Orders.id);
+                    Order x=Order(oTotalPrice:Orders['Total price'],documentID: Orders.id,OrderName:Orders[KOrderName],OrderAddress:Orders[KOrderAddress],OrderNumber:Orders[KOrderPhoneNumber] );
 
 
 
@@ -92,7 +92,7 @@ final Products _p=new Products();
 
                               new Chip (
 
-                                label:  Text( spacing(x.oTotalPrice.toString()), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+                                label:  Text( spacing(x.OrderName.toString()), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
                               ),
 

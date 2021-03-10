@@ -3,5 +3,7 @@ class Order {
 String documentID;
   double oTotalPrice;
   String OrderName;
-  Order({this.oTotalPrice,this.documentID});
+  String OrderAddress;
+  String OrderNumber;
+  Order({this.oTotalPrice,this.documentID,this.OrderAddress,this.OrderName,this.OrderNumber});
 }

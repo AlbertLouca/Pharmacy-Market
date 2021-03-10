@@ -8,6 +8,7 @@ import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
 
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'categories_screen.dart';
 import 'products_screen.dart';
 import '../../constants.dart';
@@ -20,7 +21,60 @@ class Cart_screen extends StatefulWidget {
 }
 
 class _Cart_screenState extends State<Cart_screen> {
+  var Name,Phone,address,
+      Fname,FPhone,Faddress;
+  getName()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Name = preferences.getString("name");
+    return Name;
+
+  }
+  getPhone()async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    Phone = preferences.getString("phone");
+    //print (Phone);
+    return Phone;
+  }
+  getAddress()async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    address = preferences.getString("address");
+    print (address);
+    return address;
+
+  }
   @override
+  void initState(){
+
+
+    getName().then((name){
+
+      setState(() {
+        Fname= name;
+      });
+    });
+    getPhone().then((phone){
+
+      setState(() {
+        FPhone  = phone;
+      });
+    });
+
+    getAddress().then((address){
+
+      setState(() {
+        Faddress= address;
+      });
+    });
+
+
+    super.initState();
+
+
+    //print('Name form init state'+Name);
+  }
+  @override
+
   Widget build(BuildContext context) {
 
 
@@ -91,7 +145,10 @@ class _Cart_screenState extends State<Cart_screen> {
         print (cart.Products);
         print (cart.get_price());
         _p.StoreOrders({
-          KTotalPrice:cart.get_price()
+          KTotalPrice:cart.get_price(),
+          KOrderName:Fname,
+          KOrderAddress:Faddress,
+          KOrderPhoneNumber:FPhone
 
         },cart.Products);
         cart.Emptycart();
