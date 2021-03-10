@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import '../constants.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
+import 'package:pharmacynew/screens/user/location_maps.dart';
 
 //import 'package:firebase_database/firebase_database.dart';
 
@@ -229,7 +230,12 @@ class _SignupScreenState extends State<SignupScreen> {
                   );
 
                 },
+<<<<<<< Updated upstream
                     child: Text('Find My Address'),
+=======
+                   
+                    child: Text('Find my address'),
+>>>>>>> Stashed changes
                 ),
                 RaisedButton(
                   onPressed: () async {
