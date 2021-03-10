@@ -90,30 +90,39 @@ final Products _p=new Products();
                             children: [
 
 
-                              new Chip (
 
-                                label:  Text( spacing(x.OrderName.toString()), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
-                              ),
+                              Text( spacing(x.OrderName.toString()), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
 
-                              Text( '       \n \n '+"   "+x.oTotalPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-                              Text('  '),
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
 
-                              IconButton(
-                                onPressed: (){
+                                 Text( x.oTotalPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
 
-                          Navigator.pushNamed(context, OrdersDetails.id,arguments:x.documentID);
-                                },
 
-                                icon: Icon(
-                                  Icons.info_outline_rounded,
-                                  color: Colors.black,
+                                 IconButton(
+                                   onPressed: (){
 
-                                ),padding: const EdgeInsets.only(right:10),
+                                     Navigator.pushNamed(context, OrdersDetails.id,arguments:x.documentID);
+                                   },
 
-                                color: Colors.red[500],
-                              ),
-                              Text('    '),
+                                   icon: Icon(
+                                     Icons.info_outline_rounded,
+                                     color: Colors.black,
+
+                                   ),padding: const EdgeInsets.only(right:10),
+
+                                   color: Colors.red[500],
+                                 ),
+
+
+                               ],
+
+
+                             ),
+
+
 
                             ],
                           );

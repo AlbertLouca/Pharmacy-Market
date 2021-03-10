@@ -24,7 +24,8 @@ children: [
     
         width: double.infinity,
       ),
-      
+
+
       ElevatedButton.icon(onPressed: (){
         Navigator.pushNamed(context, AddProduct.id);
     
