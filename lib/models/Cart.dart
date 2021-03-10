@@ -13,14 +13,18 @@ class Cart with ChangeNotifier{
   int _count =0;
 
 void AddtoCart(Product item){
-if(Products==null){
-  List <Product> Products=[item];
 
-}
-else {
-  Products.add(item);
+  if(Products.contains(item)){
+    Products[Products.indexOf(item)].increasequantity();
 
-}
+  }
+  else{
+    Products.add(item);
+
+  }
+
+
+
 
 _price+=item.pPrice;
 _count+=1;

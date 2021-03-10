@@ -57,10 +57,15 @@ class _Cart_screenState extends State<Cart_screen> {
                                 children: <TextSpan>[
                           TextSpan(
                               text: ' ${cart.Products[i].pPrice} EGP',
-                              style: TextStyle(color: Colors.green))
-                        ])),
+                              style: TextStyle(color: Colors.green)),
+                                  TextSpan(
+                                      text: '          X ${cart.Products[i].pQuantity} ',
+                                      style: TextStyle(color: Colors.black))
+                        ]
+                            )
+                        ),
                     trailing: IconButton(
-                      icon: Icon(Icons.remove),
+                      icon: Icon(Icons.remove,color: Colors.red,),
                       onPressed: () {
                         cart.Removefromcart(cart.Products[i]);
                       },

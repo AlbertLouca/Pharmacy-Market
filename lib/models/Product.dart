@@ -11,11 +11,17 @@ class  Product with ChangeNotifier{
   String pImageURl;
   bool isFavorite;
   String pCategory;
+  int pQuantity=1;
 
 
 Product({this.pName,this.pPrice,this.pDescription,this.pImageURl,this.pCategory});
 
+void increasequantity(){
 
+  pQuantity+=1;
+
+
+}
   void toggleFavoriteStatus(){
     isFavorite =!isFavorite;
     notifyListeners();
