@@ -118,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           });
                         }
                       } catch (error) {
-                        print(error.toString() + 'kkk');
+                        print(error.toString());
 
                         var errorMessage = 'Authentication failed';
 
