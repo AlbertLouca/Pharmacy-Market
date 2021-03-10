@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget{
 
       //initialRoute: MyMaps.id,
 
-      initialRoute: CategoryScreen.id,
+      initialRoute: ProductsScreen.id,
 
 
      // initialRoute: SignupScreen.id,
