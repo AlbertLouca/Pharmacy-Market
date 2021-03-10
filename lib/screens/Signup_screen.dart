@@ -1,21 +1,41 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Users.dart';
+import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/screens/login_screen.dart';
+import 'package:pharmacynew/screens/user/location_maps.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'package:provider/provider.dart';
+import '../constants.dart';
 import 'package:pharmacynew/models/user.dart';
+import 'package:pharmacynew/screens/login_screen.dart';
 
-
+//import 'package:firebase_database/firebase_database.dart';
 
 class SignupScreen extends StatefulWidget {
   static String id = 'SignupScreen';
 
   @override
   _SignupScreenState createState() => _SignupScreenState();
+/*Widget build(BuildContext context) {
+    create: (context) => Auth();
+    final deviceDimenions = MediaQuery.of(context).size;
+    return Scaffold(
+        backgroundColor: kBackGroundColor,
+        body:SafeArea(
+          child: MyCustomForm() ,
+        )
 
+    );
+
+
+  }*/
 }
-
+/*class MyCustomForm extends StatefulWidget {
+  @override
+   //final Auth auth = new Auth();
+  _MyCustomFormState createState() => _MyCustomFormState();
+}*/
 
 class _SignupScreenState extends State<SignupScreen> {
   Auth a = new Auth();
@@ -24,6 +44,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final RegExp emailRegex = new RegExp(
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$");
 
+  //var _isLoading = false;
   TextEditingController _name = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
@@ -35,6 +56,8 @@ class _SignupScreenState extends State<SignupScreen> {
   users U = new users();
   Auth b = new Auth();
 
+  //final FirebaseDatabase database = FirebaseDatabase.getInstance();
+  //DatabaseReference ref = database.getReference("server/saving-data/fireblog/posts");
 
   void _showErrorDialog(String message) {
     showDialog(
@@ -64,7 +87,21 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
+  /*Future<void> _submit() async {
+    if (_formKey.currentState.validate())
+     {
+      return;
+    }
+    _formKey.currentState.save();
+    setState(() {
+      _isLoading = true;
+    });
 
+
+    setState(() {
+      _isLoading = false;
+    });
+  }*/
   Widget build(BuildContext context) {
     create:
     (context) => Auth();
@@ -141,7 +178,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       validator: (value) {
                         if (value !=
                             _passwordFieldKey
-                                .currentState.value ) {
+                                .currentState.value /*||value.isEmpty */) {
                           return 'Password do not match';
                         }
                         return null;
@@ -166,7 +203,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _mobile,
                       decoration: InputDecoration(
                         labelText: 'Mobile',
-                      
+                        /*hintText: 'Enter Phone Number Here'*/
                       ),
                     )),
                 Container(
@@ -182,7 +219,18 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _address,
                       keyboardType: TextInputType.streetAddress,
                       decoration: InputDecoration(labelText: 'Home Address'),
-                    )),
+                    )), RaisedButton(onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyMaps(),
+                    ),
+
+                  );
+
+                },
+                    child: Text('Find My Address'),
+                ),
                 RaisedButton(
                   onPressed: () async {
                     print(_email.text);
@@ -205,11 +253,11 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             _password.text);
                         if (_formKey.currentState.validate()) {
-                         
+                          // String key = mDatabase.child("posts").push().getKey();
 
                           _showSignupDialog('Welcome, Redirecting in 5');
 
-                          Timer(Duration(seconds: 4), () {
+                          Timer(Duration(seconds: 5), () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -217,7 +265,12 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             );
                           });
-                
+                          /*Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryScreen(),
+                      ),
+                    );*/
                         }
                       } catch (error) {
                         print(error.toString());
@@ -268,11 +321,125 @@ class _SignupScreenState extends State<SignupScreen> {
                   );
 
                 },
-                    child: Text('Already Have an Account? Sign In here!'),
+                    child: Text('Already Have an Account?'),
                 )
               ],
             ),
           )),
     );
   }
+
+/*
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          color: Colors.blueAccent,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: TextFormField(
+                validator: (value) {
+            if (value.isEmpty) {
+              print( 'Please enter your e-mail');
+            }
+            return null;
+           },
+                style: TextStyle(color: Colors.white),
+                controller: _email,
+                decoration: InputDecoration(
+                  hintText: "Email",
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  labelText: "Email",
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 35),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: TextFormField(
+                validator: (value) {
+            if (value.isEmpty) {
+              return 'Please enter your password';
+            }
+            return null;
+           },
+                style: TextStyle(color: Colors.white),
+                controller: _password,
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "password",
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  labelText: "Password",
+                  labelStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 35),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.4,
+              height: 45,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: Colors.white,
+              ),
+              child: MaterialButton(
+                onPressed: () async {
+                  bool shouldNavigate =
+                  await register(_email.text, _password.text);
+                  if (shouldNavigate) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CategoryScreen(),
+                      ),
+                    );
+                  }
+                },
+                child: Text("Register"),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 35),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.4,
+              height: 45,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15.0),
+                color: Colors.white,
+              ),
+              child: MaterialButton(
+                   onPressed: () async {
+                  bool shouldNavigate =
+                  await signIn(_email.text, _password.text);
+                  if (shouldNavigate) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AddProduct(),
+                      ),
+                    );
+                  }
+                },
+                  child: Text("Login")),
+            ),
+          ],
+        ),
+      ),
+    );
+  }*/
 }
