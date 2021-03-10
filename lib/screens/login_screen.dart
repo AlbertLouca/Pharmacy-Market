@@ -4,7 +4,8 @@ import 'package:pharmacynew/screens/user/categories_screen.dart';
 import 'package:pharmacynew/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:pharmacynew/screens/Signup_screen.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pharmacynew/screens/admin/manage_page.dart';
 class LoginScreen extends StatefulWidget {
   static String id = 'LoginScreen';
 
@@ -19,6 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
+  var isadmin, admin;
+
+  getAdmin() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    return isadmin = preferences.getBool("isadmin");
+  }
 
   final myController = TextEditingController();
 
@@ -48,6 +56,16 @@ class _LoginScreenState extends State<LoginScreen> {
         content: Text(message),
       ),
     );
+  }
+
+  void initState() {
+    getAdmin().then((id) {
+      setState(() {
+        admin = id;
+      });
+    });
+
+    super.initState();
   }
 
   Widget build(BuildContext context) {
@@ -108,14 +126,23 @@ class _LoginScreenState extends State<LoginScreen> {
                             .login(_email.text, _password.text);
                         if (_formKey.currentState.validate()) {
                           _showLoginDialog('Welcome, Redirecting in 5');
-                          Timer(Duration(seconds: 4), () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => CategoryScreen(),
-                              ),
-                            );
-                          });
+
+                          if(_email.text=='admin@gmail.com'){
+
+                            Timer(Duration(seconds: 4), () {
+
+                              Navigator.pushNamedAndRemoveUntil(context, Manage_screen.id, (_) => false);
+                            });
+
+                          }
+                          else {
+                            print(admin);
+                            Timer(Duration(seconds: 4), () {
+
+                              Navigator.pushNamedAndRemoveUntil(context, CategoryScreen.id, (_) => false);
+                            });
+                          }
+
                         }
                       } catch (error) {
                         print(error.toString() + 'kkk');

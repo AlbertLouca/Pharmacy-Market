@@ -35,10 +35,7 @@ class _NavBarState extends State<NavBar> {
           icon: Icon(Icons.home),
           label: 'Home',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: 'Settings',
-        ),
+
       ],
       selectedItemColor: Colors.amber[800],
       currentIndex: index,
@@ -64,17 +61,10 @@ class _NavBarState extends State<NavBar> {
 
             }
             break;
-          case 2:
-            {
-              setState(() {
 
-                  Navigator.pushNamed(context,Manage_screen.id,);
-
-              });
-            }
-            break;
         }
       },
     );
   }
 }
+/////////////////////////////////////

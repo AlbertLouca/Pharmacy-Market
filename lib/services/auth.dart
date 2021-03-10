@@ -107,8 +107,10 @@ class Auth with ChangeNotifier {
               "Address": user.address,
               "Admin" : user.admn 
             }));
-        isadmin(user.admn);
+
+
       } else {
+
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
         http.put(

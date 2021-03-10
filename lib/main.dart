@@ -50,15 +50,15 @@ class MyApp extends StatelessWidget{
 
 
 
-<<<<<<< HEAD
+
+
+
+
+      //initialRoute: CategoryScreen.id,
+
+
 
       initialRoute: SignupScreen.id,
-=======
-      initialRoute: CategoryScreen.id,
->>>>>>> 73d7725291baca95721f0ed916a54f69fd33c4cd
-
-
-     // initialRoute: SignupScreen.id,
 
 
 
