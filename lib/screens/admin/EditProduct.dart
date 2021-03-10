@@ -20,7 +20,7 @@ class EditProduct extends StatefulWidget {
 
 class _EditProductState extends State<EditProduct> {
 
-  String _name,_description;
+  String _name,_description,_category;
 
   double _price;
   String _picturePath;
@@ -121,6 +121,11 @@ print('done'+_picturePath);
 
 
               }, hint: 'Product Name'),
+              SizedBox(height:10),
+              GenericTextFeild(onClick: (value){
+                _category=value;
+
+              }, hint: 'Product Description'),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
                 _price=double.parse(value);
