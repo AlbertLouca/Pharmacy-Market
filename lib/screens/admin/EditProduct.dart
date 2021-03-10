@@ -125,7 +125,7 @@ print('done'+_picturePath);
               GenericTextFeild(onClick: (value){
                 _category=value;
 
-              }, hint: 'Product Description'),
+              }, hint: 'Product Category'),
               SizedBox(height:10),
               GenericTextFeild(onClick: (value){
                 _price=double.parse(value);
@@ -168,7 +168,7 @@ print('done'+_picturePath);
                                  kProductDescription: _description,
                                  kProductImageUrl: _picturePath
                                }), p.pID);
-
+                        Navigator.pop(context) ;
   //print('after for loop '+_picturePath);
 }
 catch (e){
@@ -179,6 +179,8 @@ catch (e){
 
 
 }
+
+
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0))),
