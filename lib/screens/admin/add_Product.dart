@@ -157,15 +157,31 @@ print('done'+_picturePath);
                           Navigator.pop(context)
                           ;
                         }
-                        catch (e){
-                        print (e.toString());
+                        catch (e) { print(e.toString());
+                          if (e.toString().contains('Failed assertion')) {
 
-                        Scaffold.of(context).showSnackBar(SnackBar(content:Text("Price should be number and dont have characters"
-                        ),
-                        ));
 
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Pls enter a pic"
+                              ),
+                            ));
+                          }
+                          else if (e.toString().contains('FormatException: Invalid double')){
+
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Please Enter price as a number"
+                              ),
+                            ));
+                          }
+                          else {
+
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text("Entered Successfuly"
+                              ),
+                            ));
+
+                          }
                         }
-
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0))),

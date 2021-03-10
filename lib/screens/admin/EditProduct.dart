@@ -171,6 +171,33 @@ print('done'+_picturePath);
                         Navigator.pop(context) ;
   //print('after for loop '+_picturePath);
 }
+
+                        catch (e) { print(e.toString());
+                        if (e.toString().contains('Failed assertion')) {
+
+
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Pls enter a pic"
+                            ),
+                          ));
+                        }
+                        else if (e.toString().contains('FormatException: Invalid double')){
+
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Please Enter price as a number"
+                            ),
+                          ));
+                        }
+                        else {
+
+                          Scaffold.of(context).showSnackBar(SnackBar(
+                            content: Text("Entered Successfuly"
+                            ),
+                          ));
+
+                        }
+                        }
+
 catch (e){
                         print (e.toString());
   Scaffold.of(context).showSnackBar(SnackBar(content:Text(e.toString()
@@ -179,6 +206,7 @@ catch (e){
 
 
 }
+
 
 
                       },

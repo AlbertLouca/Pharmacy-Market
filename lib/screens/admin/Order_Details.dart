@@ -77,46 +77,17 @@ class _OrdersDetailsState extends State<OrdersDetails> {
                             children: [
 
 
-                              new Chip (
 
-                                label:  Text( spacing(p.pName), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-
-                              ),
-
-                              Text( '       \n \n '+"   "+p.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-                              Text( '       \n \n '+"   "+p.pQuantity.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-
-                              IconButton(
-                                onPressed: (){
+                                Align(  child:  Text( p.pName, style: TextStyle(fontWeight: FontWeight.bold, backgroundColor: Colors.white , fontSize: 25)),      ),
 
 
-                                },
 
-                                icon: Icon(
-                                  Icons.favorite_border_outlined,
-                                  color: Colors.black,
+                          Align(  child:     Text( '       \n \n '+"   "+p.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green,)),   ),
+                          Align(  child:     Text( '  Quantity    x  '+"   "+p.pQuantity.toString()+ ' ', style: TextStyle( color:Colors.green)),   ),
 
-                                ),padding: const EdgeInsets.only(right:10),
 
-                                color: Colors.red[500],
-                              ),
                               Text('    '),
-                              IconButton(
-                                onPressed: (){
 
-
-                                  //cart.AddtoCart(x);
-
-                                },
-
-                                icon: Icon(
-                                  Icons.add,
-                                  color: Colors.blue,
-
-                                ),padding: const EdgeInsets.only(right:10),
-
-                                color: Colors.red[500],
-                              ),
                             ],
                           );
                         }

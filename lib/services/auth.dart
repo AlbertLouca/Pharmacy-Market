@@ -18,6 +18,12 @@ class Auth with ChangeNotifier {
     preferences.setString("phone", phone);
     preferences.setString("mail", mail);
     preferences.setString("address", address);
+
+  }
+  isadmin(bool b) async{
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    preferences.setBool("isadmin", b);
   }
 
   String _token;
@@ -101,6 +107,7 @@ class Auth with ChangeNotifier {
               "Address": user.address,
               "Admin" : user.admn 
             }));
+        isadmin(user.admn);
       } else {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
