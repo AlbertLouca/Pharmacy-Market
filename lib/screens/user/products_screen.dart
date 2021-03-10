@@ -89,7 +89,8 @@ class _ProductsscreenState extends State<ProductsScreen> {
                           return Wrap (
 
                             children: [
-                              CircleAvatar(radius: 30,
+                              Align(child:
+                              CircleAvatar(radius: 50,
                                 child:ClipOval(
 
                                     child:SizedBox(
@@ -104,20 +105,20 @@ class _ProductsscreenState extends State<ProductsScreen> {
                                 ),
 
                               ),
-
-
-                              new Chip (
-
-                                label:  Text( spacing(x.pName), style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
-
                               ),
 
-                              Text( '       \n \n '+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
-                              Text('  '),
 
 
-                              Text('    '),
-                              IconButton(
+                            Text( spacing(x.pName) +'\n \n ', style: TextStyle(fontWeight: FontWeight.bold, color:Colors.black , fontSize: 25)),
+
+
+
+                              Text( '     \n'+"   "+x.pPrice.toString()+ ' EGP', style: TextStyle( color:Colors.green)),
+
+
+
+
+                            IconButton(
                                 onPressed: (){
 
 
