@@ -17,6 +17,7 @@ import 'package:pharmacynew/screens/user/products_screen.dart';
 import 'package:pharmacynew/screens/user/location_maps.dart';
 import 'package:pharmacynew/screens/user/notification_test.dart';
 import 'package:pharmacynew/services/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'models/Cart.dart';
 import 'screens/user/Profile.dart';
 import 'screens/admin/add_Product.dart';
@@ -29,6 +30,7 @@ void main ()async {
   runApp(ChangeNotifierProvider(
     create: (context) => Auth(),
     child: MyApp(),
+
   ));
 
 
@@ -36,10 +38,8 @@ void main ()async {
 }
 
 class MyApp extends StatelessWidget{
-
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider(create: (context){
      return Cart();
 
@@ -49,9 +49,9 @@ class MyApp extends StatelessWidget{
         debugShowCheckedModeBanner: false,
 
 
-      //initialRoute: MyMaps.id,
 
-      initialRoute: AddProduct.id,
+
+      initialRoute: SignupScreen.id,
 
 
      // initialRoute: SignupScreen.id,
