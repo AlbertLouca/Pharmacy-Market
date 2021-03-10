@@ -7,23 +7,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pharmacynew/models/http_exception.dart';
 import 'package:pharmacynew/models/user.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-
-
 
 class Auth with ChangeNotifier {
-  savePref (String id,String name, String phone,String mail,String address) async{
+  savePref(
+      String id, String name, String phone, String mail, String address) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
 
-SharedPreferences preferences = await SharedPreferences.getInstance();
-
-preferences.setString("id", id);
-preferences.setString("name", name);
-preferences.setString("phone", phone);
-preferences.setString("mail", mail);
-preferences.setString("address", address);
-
-
+    preferences.setString("id", id);
+    preferences.setString("name", name);
+    preferences.setString("phone", phone);
+    preferences.setString("mail", mail);
+    preferences.setString("address", address);
   }
 
   String _token;
@@ -42,20 +36,18 @@ preferences.setString("address", address);
     return null;
   }
 
-   String get userId {
+  String get userId {
     return _userId;
   }
 
   bool get isAuth {
     return token != null;
   }
+
   users u = new users();
 
   Future<void> _authenticate(String email, String password, String action,
       {UserModel user}) async {
-
-
-
     try {
       final url =
           'https://identitytoolkit.googleapis.com/v1/accounts:$action?key=AIzaSyBsgZ9Sq-9fxZT8vMSihE31oKfDzNVzsk0';
@@ -91,9 +83,10 @@ preferences.setString("address", address);
         user = UserModel(
             password: responseData['password'], email: responseData['email']);
         print(responseData);
-        print('user id '+_userId);
+        print('user id ' + _userId);
 
-        savePref(_userId, responseData['name'], responseData['mobile'], responseData['email'], responseData['Address']);
+        savePref(_userId, responseData['name'], responseData['mobile'],
+            responseData['email'], responseData['Address']);
 
         final prefs = await SharedPreferences.getInstance();
         prefs.setString(
@@ -107,7 +100,6 @@ preferences.setString("address", address);
               "conpassword": user.confirm,
               "Address": user.address
             }));
-
       } else {
         var url =
             'https://pharmacyapp-629fe-default-rtdb.firebaseio.com/user/$_userId.json';
@@ -125,25 +117,23 @@ preferences.setString("address", address);
           ),
         );
 
-        u.addUser(UserModel(
-
-          name: user.fname,
-          email: user.mail,
-          password: user.passWord,
-          conpassword: user.confirm,
-          mobile:user.phone,
-          address: user.address,
-
-        ),_userId);
-
+        u.addUser(
+            UserModel(
+              name: user.fname,
+              email: user.mail,
+              password: user.passWord,
+              conpassword: user.confirm,
+              mobile: user.phone,
+              address: user.address,
+            ),
+            _userId);
       }
-     
+
       notifyListeners();
     } catch (error) {
       throw error;
     }
   }
-
 
   Future<void> signup(UserModel user, String password) async {
     return _authenticate(user.email, password, "signUp", user: user);
@@ -169,10 +159,8 @@ preferences.setString("address", address);
         name: savedUserData['Fullname'],
         mobile: savedUserData['mobile'],
         address: savedUserData['address'],
-
       );
       notifyListeners();
-     
     } on Exception catch (e) {
       print(e.toString());
     }
@@ -188,7 +176,6 @@ preferences.setString("address", address);
     _expiryDate = null;
     _userId = null;
     _authTimer = null;
-
   }
 /*
   void _autoLogout() {

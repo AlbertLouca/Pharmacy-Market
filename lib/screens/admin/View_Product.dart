@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
-import 'file:///D:/University/Pharmacy-Market/lib/screens/user/NavBar.dart';
+import 'package:pharmacynew/screens/user/NavBar.dart';
 import 'package:pharmacynew/screens/admin/EditProduct.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';

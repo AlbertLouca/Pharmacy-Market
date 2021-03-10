@@ -6,16 +6,12 @@ import 'package:pharmacynew/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:pharmacynew/models/user.dart';
 
-
-
 class SignupScreen extends StatefulWidget {
   static String id = 'SignupScreen';
 
   @override
   _SignupScreenState createState() => _SignupScreenState();
-
 }
-
 
 class _SignupScreenState extends State<SignupScreen> {
   Auth a = new Auth();
@@ -34,7 +30,6 @@ class _SignupScreenState extends State<SignupScreen> {
   final myController = TextEditingController();
   users U = new users();
   Auth b = new Auth();
-
 
   void _showErrorDialog(String message) {
     showDialog(
@@ -63,7 +58,6 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
-
 
   Widget build(BuildContext context) {
     create:
@@ -139,9 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     padding: EdgeInsets.all(10.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value !=
-                            _passwordFieldKey
-                                .currentState.value ) {
+                        if (value != _passwordFieldKey.currentState.value) {
                           return 'Password do not match';
                         }
                         return null;
@@ -166,7 +158,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       controller: _mobile,
                       decoration: InputDecoration(
                         labelText: 'Mobile',
-                      
                       ),
                     )),
                 Container(
@@ -205,8 +196,6 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             _password.text);
                         if (_formKey.currentState.validate()) {
-                         
-
                           _showSignupDialog('Welcome, Redirecting in 5');
 
                           Timer(Duration(seconds: 4), () {
@@ -217,7 +206,6 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             );
                           });
-                
                         }
                       } catch (error) {
                         print(error.toString());
@@ -258,17 +246,16 @@ class _SignupScreenState extends State<SignupScreen> {
                   padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: Text('Sign up'),
                 ),
-                RaisedButton(onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ),
-
-                  );
-
-                },
-                    child: Text('Already Have an Account? Sign In here!'),
+                RaisedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  },
+                  child: Text('Already Have an Account? Sign In here!'),
                 )
               ],
             ),
