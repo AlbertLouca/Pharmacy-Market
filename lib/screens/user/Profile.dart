@@ -99,7 +99,7 @@ getAddress().then((address){
     //getPref(ID,Name,Phone,mail,address);
     return MaterialApp(
       home: Scaffold(
-        bottomNavigationBar: NavBar(0),
+        
         appBar: AppBar(
           title: Text(
             "Profile",
