@@ -15,9 +15,8 @@ class users {
           KUserPassword: u.passWord,
           KUserConfirmPassowrd :u.conpassword,
           KUserMobile:u.mobile,
-          KUserAddress:u.address
-
-
+          KUserAddress:u.address,
+          KUserType:u.admin,
         });
 
   }

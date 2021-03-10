@@ -215,7 +215,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         if (_formKey.currentState.validate()) {
                           _showSignupDialog('Welcome, Redirecting in 5');
 
-                          Timer(Duration(seconds: 5), () {
+                          Timer(Duration(seconds: 4), () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(

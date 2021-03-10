@@ -11,6 +11,7 @@ class UserModel {
   String conpassword;
   String mobile;
   String address;
+  bool admin ;
 
   List <Product> favorites=[];
   UserModel({
@@ -22,6 +23,7 @@ class UserModel {
     this.conpassword,
     this.mobile,
     this.address,
+    this.admin,
   });
 
  
@@ -54,5 +56,10 @@ class UserModel {
   String get addres
   {
     return address;
+  }
+
+  bool get admn 
+  {
+    return false;
   }
 }

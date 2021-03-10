@@ -98,7 +98,8 @@ class Auth with ChangeNotifier {
               "mobile": user.phone,
               "password": user.passWord,
               "conpassword": user.confirm,
-              "Address": user.address
+              "Address": user.address,
+              "Admin" : user.admn 
             }));
       } else {
         var url =
@@ -112,7 +113,8 @@ class Auth with ChangeNotifier {
               "mobile": user.phone,
               "password": user.passWord,
               "conpassword": user.confirm,
-              "Address": user.address
+              "Address": user.address,
+              "Admin" : user.admn
             },
           ),
         );
@@ -125,6 +127,7 @@ class Auth with ChangeNotifier {
               conpassword: user.confirm,
               mobile: user.phone,
               address: user.address,
+              admin: false,
             ),
             _userId);
       }
