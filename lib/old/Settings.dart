@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../log.dart';
 import '../NavBar.dart';
-import '../screens/user/NavBar.dart';
+import '../services/NavBar.dart';
 
 class Settings extends StatefulWidget {
   @override

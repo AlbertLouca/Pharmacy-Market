@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'NavBar.dart';
+import '../../services/NavBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class Profile extends StatefulWidget {
   @override
