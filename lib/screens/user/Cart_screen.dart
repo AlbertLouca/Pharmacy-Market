@@ -8,6 +8,7 @@ import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
 
 import 'package:provider/provider.dart';
+import 'categories_screen.dart';
 import 'products_screen.dart';
 import '../../constants.dart';
 
@@ -100,7 +101,7 @@ class _Cart_screenState extends State<Cart_screen> {
           setState(() {
             Navigator.pushNamed(
               context,
-              ProductsScreen.id,
+              CategoryScreen.id,
             );
           });
         });
