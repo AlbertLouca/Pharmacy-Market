@@ -6,8 +6,9 @@ import 'package:pharmacynew/models/Cart.dart';
 import 'package:pharmacynew/models/Order.dart';
 import 'package:pharmacynew/models/Product.dart';
 import 'package:pharmacynew/models/Products.dart';
-import 'package:pharmacynew/old/NavBar.dart';
+import 'package:pharmacynew/NavBar.dart';
 import 'package:pharmacynew/screens/user/Cart_screen.dart';
+import 'package:pharmacynew/services/NavBar.dart';
 import 'package:provider/provider.dart';
 import '../../constants.dart';
 
