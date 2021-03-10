@@ -17,8 +17,8 @@ class Products  with ChangeNotifier{
           kProductName: p.pName,
           kProductPrice: p.pPrice,
           kProductDescription: p.pDescription,
-          kProductImageUrl :p.pImageURl
-
+          kProductImageUrl :p.pImageURl,
+          kProductCategory:p.pCategory
 
         });
     //notifyListeners();

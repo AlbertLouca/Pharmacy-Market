@@ -10,10 +10,10 @@ class  Product with ChangeNotifier{
   String pID;
   String pImageURl;
   bool isFavorite;
+  String pCategory;
 
 
-
-Product({this.pName,this.pPrice,this.pDescription,this.pImageURl});
+Product({this.pName,this.pPrice,this.pDescription,this.pImageURl,this.pCategory});
 
 
   void toggleFavoriteStatus(){

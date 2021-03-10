@@ -4,6 +4,7 @@ const kFillTextFeildColor=Colors.cyanAccent;
 const kProductsCollection='Products';
 const kProductName='Name';
 const kProductPrice='Price';
+const kProductCategory='Category';
 const kProductDescription='Description';
 const KAppBarColor=Colors.deepPurple;
 const KbuttonColor= Colors.white;
